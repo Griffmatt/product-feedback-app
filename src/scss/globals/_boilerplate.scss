@@ -1,3 +1,5 @@
+@use "../utilities" as u;
+
 html{
     box-sizing: border-box;
     font-size: 100%;
@@ -8,9 +10,9 @@ html{
 }
 
 body{
-    font-family: 'Courier New', Courier, monospace;
-    background-color: black;
-    color: white;
+    font-family: u.$font;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
 }
