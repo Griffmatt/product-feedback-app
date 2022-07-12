@@ -1,0 +1,14 @@
+.button{
+    height: 2.5rem;
+    width: 8.375rem;
+    border-radius: .625rem;
+    border: none;
+    color: var(--white);
+    &--purple{
+        background-color: var(--purple);
+    }
+    &--sm{
+        height: 2.5rem;
+        width: 8.375rem;
+    }
+}

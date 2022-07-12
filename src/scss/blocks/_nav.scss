@@ -1,0 +1,16 @@
+.nav{
+    height: 4.5rem;
+    &__banner{
+        height: inherit;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        background-image: url("/assets/suggestions/mobile/background-header.png");
+        background-size: cover;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 1.5rem;
+    }
+
+}
