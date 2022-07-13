@@ -1,3 +1,5 @@
+@use "../utilities" as u;
+
 .header{
     background-color: var(--dark-blue-1);
     display: flex;
@@ -6,13 +8,31 @@
     padding-inline: 1.5rem;
     height: 3.5rem;
     width: 100%;
+    @include u.breakpoint(medium){
+        width: min(100vw - 3rem, 100%);
+        margin-inline: auto;
+        border-radius: .6375rem;
+        height: 4rem;
+    }
+
+    &__menu{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
 
     &__image{
         display: none;
+        @include u.breakpoint(medium){
+            display: block;
+        }
     }
     
     &__amount{
         display: none;
+        @include u.breakpoint(medium){
+            display: block;
+        }
     }
 
     &__select{

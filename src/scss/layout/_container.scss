@@ -1,3 +1,5 @@
+@use "../utilities" as u;
+
 .container{
     display: flex;
     flex-direction: column;
@@ -5,4 +7,10 @@
     max-width: 1110px;
     position: relative;
     padding-bottom: 5vh;
+
+    @include u.breakpoint(large){
+        flex-direction: row;
+        gap: 1.875rem;
+        padding: 5rem;
+    }
 }
