@@ -8,9 +8,11 @@
     position: relative;
     padding-bottom: 5vh;
 
-    @include u.breakpoint(large){
-        flex-direction: row;
-        gap: 1.875rem;
-        padding: 5rem;
+    &--row-lg{
+        @include u.breakpoint(large){
+            flex-direction: row;
+            gap: 1.875rem;
+            padding-block: 4rem;
+        }
     }
 }

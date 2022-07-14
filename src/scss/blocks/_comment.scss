@@ -1,0 +1,28 @@
+.comment{
+    color: var(--dark-blue-2);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+
+
+    &__user{
+        grid-column: 2/4;
+    }
+
+    &__image{
+        border-radius: 10rem;
+        width: 3rem;
+        height: auto;
+        justify-self: center;
+    }
+
+    &__content{
+        grid-column: 2/13;
+        grid-row: 2;
+    }
+
+    &__reply{
+        grid-column: 12;
+        color: var(--blue);
+    }
+}

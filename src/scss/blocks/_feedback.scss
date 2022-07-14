@@ -1,0 +1,26 @@
+.feedback{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-block: 4rem;
+
+    &__nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__comments{
+        display: flex;
+        flex-direction: column;
+        gap: 1.875rem;
+        background-color: var(--white);
+        border-radius: .6375rem;
+        padding: 1.5rem;
+        margin-inline: auto;
+        width: min(100vw - 3rem, 100%);
+        h3{
+            color: var(--dark-blue-2)
+        }
+    }
+    
+}

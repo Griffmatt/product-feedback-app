@@ -1,7 +1,7 @@
 import React from "react";
 
 import EditFeedback from "./pages/EditFeedback";
-import FeedbackDetails from "./pages/FeedbackDetails";
+import Feedback from "./pages/Feedback";
 import NewFeedback from "./pages/NewFeedback";
 import Roadmap from "./pages/Roadmap";
 import Suggestions from "./pages/Suggestions";
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Suggestions/>}/>
         <Route path="/add-new-feedback" element={<NewFeedback/>}/>
+        <Route path="/feedback" element={<Feedback/>}/>
       </Routes>
     </div>
   )

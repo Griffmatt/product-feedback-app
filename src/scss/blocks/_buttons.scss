@@ -3,13 +3,20 @@
     width: 8.375rem;
     border-radius: .625rem;
     border: none;
+    cursor: npm run rde;
     color: var(--white);
     &--purple{
         background-color: var(--purple);
     }
-    &--sm{
+    &--blue{
+        background-color: var(--blue);
+    }
+    &--md{
         height: 2.5rem;
         width: 8.375rem;
+    }
+    &:hover{
+        opacity: .5;
     }
 }
 
@@ -32,9 +39,17 @@
         }
 
     }
+    &:hover{
+        background-color: var(--blue);
+        
+    }
 }
 
-.button--bug:hover{
-    background-color: var(--blue);
-    
+.button__back{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    p{
+        color: var(--dark-blue-2);
+    }
 }
