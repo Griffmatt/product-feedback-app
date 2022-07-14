@@ -6,15 +6,22 @@ import NewFeedback from "./pages/NewFeedback";
 import Roadmap from "./pages/Roadmap";
 import Suggestions from "./pages/Suggestions";
 
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useParams } from "react-router-dom"
 
 function App() {
+
+  const FeedbackId = () => {
+    const {id} = useParams()
+      return(
+        <Feedback id={id}/>
+      )
+  }
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Suggestions/>}/>
         <Route path="/add-new-feedback" element={<NewFeedback/>}/>
-        <Route path="/feedback" element={<Feedback/>}/>
+        <Route path={`/:id`} element={<FeedbackId/>}/>
       </Routes>
     </div>
   )

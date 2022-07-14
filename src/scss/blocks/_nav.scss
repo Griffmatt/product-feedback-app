@@ -103,8 +103,14 @@
             justify-content: space-between;
             align-items: center;
             p{
-                color: var(--light-blue);
-                text-decoration: underline var(--light-grey);
+                color: var(--blue);
+                text-decoration: underline var(--blue);
+                cursor: pointer;
+                &:hover{
+                    color: var(--blue-hover);
+                    text-decoration: underline var(--blue-hover);
+                }
+
             }
         }
         ul{

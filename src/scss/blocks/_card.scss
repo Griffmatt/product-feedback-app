@@ -45,6 +45,9 @@
         width: min-content;
         background-color: var(--light-grey);
         cursor: pointer;
+        &:hover{
+            background-color: var(--light-grey-hover);
+        }
         @include u.breakpoint(medium){
             grid-column: 1/2;
             grid-row: 1;

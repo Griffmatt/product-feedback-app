@@ -1,0 +1,14 @@
+.add-comment{
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background-color: var(--white);
+    border-radius: .6375rem;
+    padding: 1.5rem;
+    color: var(--dark-blue-2);
+    &__post{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

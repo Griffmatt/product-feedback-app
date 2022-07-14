@@ -1,0 +1,1 @@
+export const CATEGORY=["All", "UI", "UX", "Enhancement", "Bug", "Feature"]

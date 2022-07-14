@@ -3,7 +3,8 @@
     flex-direction: column;
     gap: 1.5rem;
     padding-block: 4rem;
-
+    width: min(100vw - 3rem, 100%);
+    margin-inline: auto;
     &__nav{
         display: flex;
         justify-content: space-between;
@@ -16,8 +17,6 @@
         background-color: var(--white);
         border-radius: .6375rem;
         padding: 1.5rem;
-        margin-inline: auto;
-        width: min(100vw - 3rem, 100%);
         h3{
             color: var(--dark-blue-2)
         }

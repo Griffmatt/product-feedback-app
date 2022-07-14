@@ -1,0 +1,15 @@
+.input-field{
+    background-color: var(--background-color);
+    border-radius: .6375rem;
+    border: none;
+    padding: 1rem;
+
+    &__text-area{
+        resize: none;
+        height: 5rem;
+    }
+
+    &:hover, :focus{
+        border: 1px solid var(--blue);
+    }
+}

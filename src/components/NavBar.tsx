@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BUG_TYPE } from '../data/bugType';
+import { CATEGORY } from '../data/category';
 
 function NavBar() {
 
@@ -21,9 +21,9 @@ function NavBar() {
             </div>
             <div className={`nav__menu ${navOpen?"nav__menu--active":""}`}>
                 <div className="nav__buttons">
-                    {BUG_TYPE.map(bug=>{
+                    {CATEGORY.map(bug=>{
                         return(
-                            <div key={bug} className={`button__bug ${active===bug?"button__bug--active":""}`} onClick={()=> setActive(`${bug}`)}>
+                            <div key={bug} className={`button__category ${active===bug?"button__category--active":""}`} onClick={()=> setActive(`${bug}`)}>
                                 <p className="p-2">{bug}</p>
                             </div>
                         )
@@ -32,7 +32,7 @@ function NavBar() {
                 <div className="nav__roadmap">
                     <div>
                         <h3>Roadmap</h3>
-                        <p className="p-2">view</p>
+                        <p className="p-2 nav__roadmap--view">view</p>
                     </div>
                     <ul>
                         <li><span>Planned<span>0</span></span></li>

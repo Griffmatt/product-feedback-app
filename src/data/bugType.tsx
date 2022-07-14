@@ -1,1 +1,0 @@
-export const BUG_TYPE=["All", "UI", "UX", "Enhancement", "Bug", "Feature"]

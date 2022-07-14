@@ -24,5 +24,15 @@
     &__reply{
         grid-column: 12;
         color: var(--blue);
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &__divider{
+        height: .0625rem;
+        background-color: var(--grey-blue);
+
     }
 }

@@ -7,6 +7,9 @@
     color: var(--white);
     &--purple{
         background-color: var(--purple);
+        &:hover{
+            background-color: var(--purple-hover);
+        }
     }
     &--blue{
         background-color: var(--blue);
@@ -15,12 +18,9 @@
         height: 2.5rem;
         width: 8.375rem;
     }
-    &:hover{
-        opacity: .5;
-    }
 }
 
-.button__bug{
+.button__category{
     padding: .375rem 1rem;
     border-radius: .625rem;
     width: min-content;
@@ -40,7 +40,7 @@
 
     }
     &:hover{
-        background-color: var(--blue);
+        background-color: var(--light-grey-hover);
         
     }
 }
@@ -49,6 +49,7 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    cursor: pointer;
     p{
         color: var(--dark-blue-2);
     }

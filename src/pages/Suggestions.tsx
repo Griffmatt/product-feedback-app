@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar';
 
 import data from "./../data/data.json";
 
+
 function Suggestions() {
 
     const suggestions = data.productRequests.filter(request => request.status === "suggestion")
@@ -33,8 +34,8 @@ function Suggestions() {
                 <CardEmpty/>:
                 suggestions.map(suggestion=>{
                     return(
-                        <Link to="/feedback">
-                            <Card suggestion={suggestion} comments={suggestion.comments}/>
+                        <Link to={`/${suggestion.id}`} key={suggestion.id}>
+                            <Card suggestion={suggestion}/>
                         </Link>
                     )
                 })}
