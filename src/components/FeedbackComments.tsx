@@ -1,25 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import CommentReply from "./CommentReply";
+
+import { totalComments } from '../utilities/totalComments'
+import AddReply from "./AddReply";
 
 
 function FeedbackComments({ suggestion }: any) {
 
+  const [commentIndex, setCommentIndex] = useState<number>()
+  const [replyingTo, setReplyingTo] = useState("")
 
-  const totalComments = () => {
-    let total = 0
-    if(suggestion.comments){
-      total += suggestion.comments.length
+  const handleAddReply = (index: number, comment: any)=> {
+    if(commentIndex === index){
+      setCommentIndex(undefined)
+      return
     }
-    if(suggestion.comments.replies){
-      total += suggestion.comments.replies.length
-    }
-    return total
+    setReplyingTo(comment.user.username)
+    setCommentIndex(index)
   }
 
   return (
     <div className="feedback__comments">
-      <h3>{totalComments()} Comments</h3>
-      {suggestion.comments?suggestion.comments.map((comment: any) => {
+      <h3>{totalComments(suggestion.comment)} Comments</h3>
+      {suggestion.comments?suggestion.comments.map((comment: any, index: number) => {
         return (
           <>
             <div className="comment" key={comment.id}>
@@ -29,9 +32,11 @@ function FeedbackComments({ suggestion }: any) {
                 <p className="p-1">@{comment.user.username}</p>
               </div>
               <p className="p-1 comment__content">{comment.content}</p>
-              <p className="p-2 p--bold comment__reply">Reply</p>
+              <p className="p-2 p--bold comment__reply--button" onClick={()=>handleAddReply(index, comment)}>Reply</p>
+              <CommentReply comment={comment} commentIndex={index} handleAddReply={handleAddReply}/>
+              {commentIndex === index?<AddReply comment={comment} />:<></>}
             </div>
-            <CommentReply comment={comment}/>
+            {index+1=== suggestion.comments.length?"":<div className="comment__divider"/>}
           </>
         );
       }):""}

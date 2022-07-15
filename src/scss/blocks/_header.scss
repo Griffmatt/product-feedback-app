@@ -40,8 +40,17 @@
         align-items: center;
         height: max-content;
         gap: .5rem;
+        color: var(--light-grey);
         span{
             font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            svg{
+                margin-bottom: .25rem;
+                align-self: end;
+                stroke: var(--light-grey);
+            }
         }
     }
 }

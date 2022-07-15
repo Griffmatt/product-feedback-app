@@ -3,7 +3,7 @@
     width: 8.375rem;
     border-radius: .625rem;
     border: none;
-    cursor: npm run rde;
+    cursor: pointer;
     color: var(--white);
     &--purple{
         background-color: var(--purple);
@@ -13,6 +13,9 @@
     }
     &--blue{
         background-color: var(--blue);
+        &:hover{
+            background-color: var(--blue-hover);
+        }
     }
     &--md{
         height: 2.5rem;
@@ -32,16 +35,20 @@
     p{
         color: var(--blue)
     }
+    &:hover{
+        background-color: var(--light-grey-hover);
+        
+    }
     &--active{
         background-color: var(--blue);
         p{
             color: var(--white)
         }
 
-    }
-    &:hover{
-        background-color: var(--light-grey-hover);
-        
+        &:hover{
+            background-color: var(--blue);
+        }
+
     }
 }
 
