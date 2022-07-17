@@ -17,9 +17,26 @@
             background-color: var(--blue-hover);
         }
     }
+
+    &--red{
+        background-color: var(--red);
+        &:hover{
+            background-color: var(--red-hover);
+        }
+    }
+
+    &--dark-blue{
+        background-color: var(--dark-blue-1);
+        &:hover{
+            background-color: var(--dark-blue-hover);
+        }
+    }
+
     &--md{
-        height: 2.5rem;
         width: 8.375rem;
+    }
+    &--lg{
+        width: 100%;
     }
 }
 

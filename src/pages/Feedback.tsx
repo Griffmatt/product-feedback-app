@@ -14,7 +14,7 @@ function FeedbackDetails({id}:{id: string | undefined} ) {
   const suggestion = data.productRequests.filter(suggestion => suggestion.id === Number(id))[0]
   console.log(id)
   return (
-    <div className="container">
+    <div className="container container--padding-top">
       <div className="feedback">
       <div className="feedback__nav">
         <BackButton/>

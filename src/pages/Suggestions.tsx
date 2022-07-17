@@ -15,7 +15,7 @@ function Suggestions() {
     const suggestions = data.productRequests.filter(request => request.status === "suggestion")
 
   return (
-    <div className="container container--row-lg">
+    <div className="container container--row">
         <NavBar/>
         <div className="column">
             <div className="header">

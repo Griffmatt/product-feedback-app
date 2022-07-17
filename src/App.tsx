@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Suggestions/>}/>
         <Route path="/add-new-feedback" element={<NewFeedback/>}/>
+        <Route path="/edit-feedback" element={<EditFeedback/>}/>
         <Route path={`/:id`} element={<FeedbackId/>}/>
       </Routes>
     </div>

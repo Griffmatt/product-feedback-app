@@ -4,15 +4,32 @@
     display: flex;
     flex-direction: column;
     margin-inline: auto;
-    max-width: 1110px;
+    max-width: 69.375rem;
     position: relative;
     padding-bottom: 5vh;
 
-    &--row-lg{
+    @include u.breakpoint(medium){
+        padding-block: 2rem;
+     }
+
+    @include u.breakpoint(large){
+       padding-block: 4rem;
+    }
+
+    &--row{
         @include u.breakpoint(large){
             flex-direction: row;
             gap: 1.875rem;
-            padding-block: 4rem;
         }
+    }
+
+    &--padding-top{
+        padding-block: 2rem;
+        width: min(100vw - 3rem, 69.375rem);
+    }
+
+    &--sm{
+        width: min(100vw - 3rem, 34rem);
+        padding-block: 5rem;
     }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Roadmap() {
   return (
-    <div>Roadmap</div>
+    <div className="container container--sm container--padding-top">Roadmap</div>
   )
 }
 

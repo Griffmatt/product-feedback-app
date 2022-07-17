@@ -3,6 +3,9 @@
     border-radius: .6375rem;
     border: none;
     padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0);
+
+    color: var(--dark-blue);
 
     &__text-area{
         resize: none;
