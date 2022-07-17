@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 
@@ -9,10 +9,19 @@ import NavBar from '../components/NavBar';
 
 import data from "./../data/data.json";
 
+import { useFeature } from "../context/currentFeature";
+
 
 function Suggestions() {
 
-    const suggestions = data.productRequests.filter(request => request.status === "suggestion")
+    const {currentFeature} = useFeature()
+
+    const [suggestions, setSuggestions] = useState(data.productRequests)
+
+
+    useEffect(()=>{
+         setSuggestions(data.productRequests.filter(request => request.status === "suggestion" && (request.category === currentFeature.toLocaleLowerCase() || currentFeature === "All")))
+    }, [currentFeature])
 
   return (
     <div className="container container--row">

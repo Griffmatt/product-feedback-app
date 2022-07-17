@@ -7,6 +7,7 @@ import Roadmap from "./pages/Roadmap";
 import Suggestions from "./pages/Suggestions";
 
 import { Routes, Route, useParams } from "react-router-dom"
+import { FeatureContextProvider } from "./context/currentFeature";
 
 function App() {
 
@@ -17,14 +18,14 @@ function App() {
       )
   }
   return (
-    <div className="App">
+    <FeatureContextProvider>
       <Routes>
         <Route path="/" element={<Suggestions/>}/>
         <Route path="/add-new-feedback" element={<NewFeedback/>}/>
         <Route path="/edit-feedback" element={<EditFeedback/>}/>
         <Route path={`/:id`} element={<FeedbackId/>}/>
       </Routes>
-    </div>
+    </FeatureContextProvider>
   )
 }
 

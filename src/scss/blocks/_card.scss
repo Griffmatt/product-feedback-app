@@ -11,6 +11,8 @@
     display: flex;
     flex-direction: column;
 
+    position: relative;
+
     &__text{
         display: grid;
         gap: .875rem;
@@ -45,8 +47,22 @@
         width: min-content;
         background-color: var(--light-grey);
         cursor: pointer;
+        svg{
+            stroke: var(--blue);
+        }
         &:hover{
             background-color: var(--light-grey-hover);
+        }
+
+        &--active{
+            color: var(--white);
+            background-color: var(--blue);
+            svg{
+                stroke: var(--white);
+            }
+            &:hover{
+                background-color: var(--blue);
+            }
         }
         @include u.breakpoint(medium){
             grid-column: 1/2;
