@@ -1,10 +1,12 @@
 import React from 'react'
 
-interface Props{
-    comment: any
+import { comment } from "../utilities/interfaces"
+
+interface props{
+  comment: comment
 }
 
-function AddReply({comment}: Props) {
+function AddReply({comment}: props) {
 
   return (
     <div className={`comment__add-reply ${comment.replies.length>0? "comment__add-reply--sm": ""}`}>

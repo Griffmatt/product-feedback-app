@@ -4,13 +4,19 @@ import CommentReply from "./CommentReply";
 import { totalComments } from '../utilities/totalComments'
 import AddReply from "./AddReply";
 
+import { suggestions, comment } from "../utilities/interfaces";
 
-function FeedbackComments({ suggestion }: any) {
+interface props{
+  suggestion: suggestions
+}
+
+
+function FeedbackComments({ suggestion }: props) {
 
   const [commentIndex, setCommentIndex] = useState<number>()
   const [replyingTo, setReplyingTo] = useState("")
 
-  const handleAddReply = (index: number, comment: any)=> {
+  const handleOpenReply = (index: number, comment: comment)=> {
     if(commentIndex === index){
       setCommentIndex(undefined)
       return
@@ -21,23 +27,23 @@ function FeedbackComments({ suggestion }: any) {
 
   return (
     <div className="feedback__comments">
-      <h3>{totalComments(suggestion.comment)} Comments</h3>
-      {suggestion.comments?suggestion.comments.map((comment: any, index: number) => {
+      <h3>{totalComments(suggestion.comments)} Comments</h3>
+      {suggestion.comments?suggestion.comments.map((comment: comment, index: number) => {
         return (
-          <>
-            <div className="comment" key={comment.id}>
+          <div key={comment.id}>
+            <div className="comment" >
               <img src={comment.user.image} className="comment__image" />
               <div className="comment__user">
                 <p className="p-1 p--bold">{comment.user.name}</p>
                 <p className="p-1">@{comment.user.username}</p>
               </div>
               <p className="p-1 comment__content">{comment.content}</p>
-              <p className="p-2 p--bold comment__reply--button" onClick={()=>handleAddReply(index, comment)}>Reply</p>
-              <CommentReply comment={comment} commentIndex={index} handleAddReply={handleAddReply}/>
+              <p className="p-2 p--bold comment__reply--button" onClick={()=>handleOpenReply(index, comment)}>Reply</p>
+              <CommentReply comment={comment} commentIndex={index} handleOpenReply={handleOpenReply}/>
               {commentIndex === index?<AddReply comment={comment} />:<></>}
             </div>
             {index+1=== suggestion.comments.length?"":<div className="comment__divider"/>}
-          </>
+          </div>
         );
       }):""}
     </div>

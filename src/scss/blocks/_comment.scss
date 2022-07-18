@@ -4,7 +4,7 @@
     color: var(--dark-blue-2);
     display: grid;
     grid-template-columns: repeat(32, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-rows: auto ;
     row-gap: 1rem;
     position: relative;
 
@@ -44,6 +44,7 @@
         height: .0625rem;
         grid-column: 1/end;
         background-color: var(--grey-blue);
+        margin-top: 1rem;
         &--vertical{
             width: .0625rem;
             height: auto;

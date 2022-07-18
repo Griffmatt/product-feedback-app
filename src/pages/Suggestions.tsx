@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+import { suggestions } from '../utilities/interfaces';
+
 import Card from '../components/Card';
 import CardEmpty from '../components/CardEmpty';
 
@@ -13,6 +15,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { selectSuggestions, fetchState } from "../redux/suggestionsSlice";
 
+import { setUser } from "../redux/userSlice";
+
 function Suggestions() {
 
     const {currentFeature} = useFeature()
@@ -24,15 +28,15 @@ function Suggestions() {
     const suggestion = useSelector(selectSuggestions)
 
     useEffect(()=>{
-        if(suggestion){
-            return
+        if(suggestion.length === 0){
+            dispatch(fetchState())
+            dispatch(setUser([]))
         }
-        dispatch(fetchState())
     }, [])
 
     useEffect(()=>{
-        setFilteredSuggestions(suggestion.filter((suggestion: any) => suggestion.status === "suggestion" && (suggestion.category === currentFeature.toLocaleLowerCase() || currentFeature === "All")))
-    }, [currentFeature])
+        setFilteredSuggestions(suggestion.filter((suggestion: suggestions) => suggestion.status === "suggestion" && (suggestion.category === currentFeature.toLocaleLowerCase() || currentFeature === "All")))
+    }, [currentFeature, suggestion])
 
   return (
     <div className="container container--row">
@@ -54,11 +58,13 @@ function Suggestions() {
             <div className="grid">
                 {filteredSuggestions.length === 0?
                 <CardEmpty/>:
-                filteredSuggestions.map((filteredSuggestions: any)=>{
+                filteredSuggestions.map((filteredSuggestions: suggestions)=>{
                     return(
-                        <Link to={`/${filteredSuggestions.id}`}>
-                            <Card suggestion={filteredSuggestions}/>
-                        </Link>
+                        <div key={filteredSuggestions.id}>
+                            <Link to={`/${filteredSuggestions.id}`}>
+                                <Card suggestion={filteredSuggestions}/>
+                            </Link>
+                        </div>
                     )
                 })}
             </div>

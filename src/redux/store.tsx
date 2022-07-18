@@ -5,25 +5,17 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import suggestionsSlice from './suggestionsSlice';
-
-import data from "../data/data.json"
-
+import userSlice from './userSlice';
 
 const reducers = combineReducers({
-    suggestions: suggestionsSlice
+    suggestions: suggestionsSlice,
+    user: userSlice
 })
 
 const persistConfig = {
     key: 'root',
     storage
   };
-
-  const initialState = {
-    suggestions:{
-        suggestions: data.productRequests
-    }
-}
-
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 

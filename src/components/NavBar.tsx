@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import { CATEGORY } from '../data/category';
 
 import { useFeature } from "../context/currentFeature";
@@ -11,6 +11,13 @@ function NavBar() {
     const handleNavOpen = () =>{
         setNavOpen(!navOpen)
     }
+
+    useEffect(()=>{
+        return(
+            setCurrentFeature("All"),
+            setNavOpen(false)
+        )
+    }, [])
 
   return (
     <div className="nav">
