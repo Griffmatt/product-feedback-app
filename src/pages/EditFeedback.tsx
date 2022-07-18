@@ -1,6 +1,7 @@
 import React from 'react'
 
 import BackButton from "../components/ui/BackButton";
+import CancelButton from '../components/ui/CancelButton';
 
 function EditFeedback() {
   return (
@@ -33,7 +34,7 @@ function EditFeedback() {
         </div>
         <div className="modal__buttons">
           <button className="button button--purple button--lg modal__buttons--save">Save Changes</button>
-          <button className="button button--dark-blue button--lg modal__buttons--cancel">Cancel</button>
+          <CancelButton/>
           <button className="button button--red button--lg modal__buttons--delete">Delete</button>
         </div>
       </div>
