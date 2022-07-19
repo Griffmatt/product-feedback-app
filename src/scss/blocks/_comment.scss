@@ -30,13 +30,18 @@
         }
     }
 
-    &__reply--button{
+    &__button{
         grid-column: 33;
         grid-row: 1;
-        color: var(--blue);
         cursor: pointer;
         &:hover{
             text-decoration: underline;
+        }
+        &--reply{
+            color: var(--blue)
+        }
+        &--delete{
+            color: var(--red);
         }
     }
 

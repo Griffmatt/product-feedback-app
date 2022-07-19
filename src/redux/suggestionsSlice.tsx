@@ -45,21 +45,34 @@ export const suggestionsSlice = createSlice({
                 }
             })
         },
+        deleteComment: (state, action) => {
+            state.suggestions.forEach(suggestion=>{
+                suggestion.comments = suggestion.comments.filter(comment=> comment.id !== action.payload)
+            })
+        },
         addReply: (state, action) => {
             state.suggestions.forEach(suggestion=>{
                 suggestion.comments.forEach((comment: comment)=>{
                     if(comment.id === action.payload.commentId){
                     comment.replies = [...comment.replies, action.payload]
-                    console.log(comment.replies)
                 }
                 })
             }
         )
         },
-    }
-});
+        deleteReply: (state, action) => {
+            state.suggestions.forEach(suggestion=>{
+                suggestion.comments.forEach((comment: comment)=>{
+                    if(comment.id === action.payload.commentId){
+                        comment.replies = comment.replies.filter(reply => reply.id !== action.payload.id)
+                    }
+                })
+            }
+        )
+        }
+}});
 
-export const { addSuggestion, fetchState, upVote, downVote, addComment, addReply } = suggestionsSlice.actions;
+export const { addSuggestion, fetchState, upVote, downVote, addComment, addReply, deleteComment, deleteReply } = suggestionsSlice.actions;
 
 export const selectSuggestions = (state: any) => state.suggestions.suggestions;
 

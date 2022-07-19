@@ -7,11 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 
 import{ addReply } from "../redux/suggestionsSlice";
+import { generateKey } from "../utilities/generateKey";
 
 interface props{
   comment: comment,
   replyingTo: string,
-  handleOpenReply: (commentIndex: number, reply: any) => void
+  handleOpenReply: (commentIndex: number| string, reply: any) => void
 }
 
 function AddReply({comment, replyingTo, handleOpenReply}: props) {
@@ -23,12 +24,13 @@ function AddReply({comment, replyingTo, handleOpenReply}: props) {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
 
+
   const handlePost = () => {
     if (replyLength > 0) {
       dispatch(
         addReply({
           commentId: comment.id,
-          id: `R${comment.replies.length + 1}`,
+          id: generateKey("R"),
           content: input.value,
           replyingTo: replyingTo,
           user: {
@@ -40,7 +42,6 @@ function AddReply({comment, replyingTo, handleOpenReply}: props) {
       );
       input.value = ""
       handleOpenReply(comment.id, comment)
-      console.log(comment)
     }
   };
 

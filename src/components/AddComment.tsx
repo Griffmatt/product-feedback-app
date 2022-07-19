@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addComment } from "../redux/suggestionsSlice";
 
 import { suggestions } from "../utilities/interfaces";
+import { generateKey } from "../utilities/generateKey";
 
 interface props {
   suggestion: suggestions
@@ -26,7 +27,7 @@ function AddComment({ suggestion }: props) {
       dispatch(
         addComment({
           feedbackId: suggestion.id,
-          id: suggestion.comments.length + 1,
+          id: generateKey("C"),
           content: input.value,
           user: {
             image: user.image,

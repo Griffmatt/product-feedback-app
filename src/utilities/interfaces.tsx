@@ -1,6 +1,8 @@
-export interface replies{
+export interface reply{
     content: string,
     replyingTo: string,
+    id: string,
+    commentId?: number,
     user: {
         image: string,
         name: string,
@@ -9,20 +11,21 @@ export interface replies{
 }
 
 export interface comment{
-    id: number,
+    id: number | string,
     content: string,
+    feedbackId?: number,
     user: {
     image: string,
     name: string,
     username: string
     },
-    replies:replies[]
+    replies:reply[]
 
 }
 
 
 export interface suggestions{
-    id: number,
+    id: number | string,
     title: string,
     category: string,
     upvotes: number,

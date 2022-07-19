@@ -28,7 +28,6 @@ function App() {
   }
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
         <FeatureContextProvider>
           <Routes>
             <Route path="/" element={<Suggestions/>}/>
@@ -37,7 +36,6 @@ function App() {
             <Route path={`/:id`} element={<FeedbackId/>}/>
           </Routes>
         </FeatureContextProvider>
-        </PersistGate>
     </Provider>
   )
 }
