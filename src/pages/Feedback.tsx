@@ -18,7 +18,7 @@ function FeedbackDetails({ id }: { id: string | undefined }) {
   const [currentSuggestion, setCurrentSuggestion] = useState<suggestions>();
 
   useEffect(() => {
-    setCurrentSuggestion(suggestion.filter((s: any) => s.id == id)[0]);
+    setCurrentSuggestion(suggestion.filter((s: suggestions) => s.id == id)[0]);
   }, [suggestion]);
 
   return (
