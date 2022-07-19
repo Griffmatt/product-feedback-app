@@ -28,7 +28,7 @@ function FeedbackDetails({ id }: { id: string | undefined }) {
           <div className="feedback">
             <div className="feedback__nav">
               <BackButton />
-              <Link to="/edit-feedback">
+              <Link to={`/edit-feedback/${currentSuggestion.id}`}>
                 <button className="p-2 button button--blue button--md">
                   Edit Feedback
                 </button>
