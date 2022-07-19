@@ -1,4 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit';
+import { Action } from 'history';
 
 import data from "../data/data.json"
 
@@ -8,17 +9,12 @@ interface State{
         name: string,
         username: string,
         upvotes: number[]
-    }
+    } | null
     
 }
 
 const initialState: State = {
-    user:{
-        image: "",
-        name: "",
-        username: "",
-        upvotes: []
-    }
+    user: null
 }
 
 export const userSlice = createSlice({
@@ -29,10 +25,14 @@ export const userSlice = createSlice({
                 state.user = {...data.currentUser, upvotes: action.payload}
             },
             addUpvote: (state, action) => {
-                state.user.upvotes = [...state.user.upvotes, action.payload]
+                if(state.user){
+                    state.user.upvotes = [...state.user.upvotes, action.payload]
+                }
             },
             removeUpvote: (state, action) => {
-                state.user.upvotes = state.user.upvotes.filter((id: number)=> id !== action.payload)
+                if(state.user){
+                    state.user.upvotes = state.user.upvotes.filter((id: number)=> id !== action.payload)
+                }
             }
        }
 });

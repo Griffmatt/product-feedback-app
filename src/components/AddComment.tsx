@@ -52,7 +52,7 @@ function AddComment({ suggestion }: props) {
       />
       <div className="add-comment__post">
         <p className="p-1">{250 - commentLength} Characthers left</p>
-        <button className="button button--purple" onClick={() => handlePost()}>
+        <button className="button button--purple" onClick={handlePost}>
           Post Comment
         </button>
       </div>

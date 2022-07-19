@@ -9,7 +9,6 @@ export interface replies{
 }
 
 export interface comment{
-
     id: number,
     content: string,
     user: {

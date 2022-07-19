@@ -5,6 +5,7 @@ import { totalComments } from '../utilities/totalComments'
 import AddReply from "./AddReply";
 
 import { suggestions, comment } from "../utilities/interfaces";
+import ReplyButton from "./ui/ReplyButton";
 
 interface props{
   suggestion: suggestions
@@ -38,9 +39,9 @@ function FeedbackComments({ suggestion }: props) {
                 <p className="p-1">@{comment.user.username}</p>
               </div>
               <p className="p-1 comment__content">{comment.content}</p>
-              <p className="p-2 p--bold comment__reply--button" onClick={()=>handleOpenReply(index, comment)}>Reply</p>
+              <ReplyButton comment={comment} index={index} handleOpenReply={handleOpenReply}/>
               <CommentReply comment={comment} commentIndex={index} handleOpenReply={handleOpenReply}/>
-              {commentIndex === index?<AddReply comment={comment} />:<></>}
+              {commentIndex === index?<AddReply comment={comment} replyingTo={replyingTo} handleOpenReply={handleOpenReply}/>:<></>}
             </div>
             {index+1=== suggestion.comments.length?"":<div className="comment__divider"/>}
           </div>

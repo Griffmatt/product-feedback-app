@@ -47,15 +47,14 @@ export const suggestionsSlice = createSlice({
         },
         addReply: (state, action) => {
             state.suggestions.forEach(suggestion=>{
-                if(suggestion.id === action.payload.feedbackId){
-
-                    suggestion.comments.forEach((comment: comment)=>{
-                        if(comment.id === action.payload.commentId){
-                        comment.replies = [...comment.replies, action.payload]
-                    }
-                    })
+                suggestion.comments.forEach((comment: comment)=>{
+                    if(comment.id === action.payload.commentId){
+                    comment.replies = [...comment.replies, action.payload]
+                    console.log(comment.replies)
                 }
-            })
+                })
+            }
+        )
         },
     }
 });

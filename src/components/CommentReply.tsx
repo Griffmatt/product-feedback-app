@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {  comment } from "../utilities/interfaces"
-
+import ReplyButton from './ui/ReplyButton';
 
 interface props{
     comment: comment, 
@@ -10,6 +10,7 @@ interface props{
 }
 
 function CommentReply({comment, commentIndex, handleOpenReply}: props) {
+
   return (
         <div className="comment__replies" key={comment.id}>
             {comment.replies.length>0? <div className="comment__divider--vertical"/>:""}
@@ -23,7 +24,7 @@ function CommentReply({comment, commentIndex, handleOpenReply}: props) {
                     <p className="p-1">@{reply.user.username}</p>
                     </div>
                     <p className="p-1 comment__content"><span className="comment__replying-to">@{reply.replyingTo}</span> {reply.content}</p>
-                    <p className="p-2 p--bold comment__reply--button" onClick={()=> handleOpenReply(commentIndex, reply)}>Reply</p>
+                    <ReplyButton comment={reply} index={commentIndex} handleOpenReply={handleOpenReply}/>
                 </div>
                 );}):""}
         </div>

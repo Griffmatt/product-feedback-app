@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { selectSuggestions, fetchState } from "../redux/suggestionsSlice";
 
-import { setUser } from "../redux/userSlice";
+import { setUser, selectUser } from "../redux/userSlice";
 
 function Suggestions() {
 
@@ -26,12 +26,16 @@ function Suggestions() {
     const dispatch = useDispatch()
 
     const suggestion = useSelector(selectSuggestions)
+    const user = useSelector(selectUser)
 
     useEffect(()=>{
         if(suggestion.length === 0){
             dispatch(fetchState())
+        }
+        if(user === null){
             dispatch(setUser([]))
         }
+       
     }, [])
 
     useEffect(()=>{
