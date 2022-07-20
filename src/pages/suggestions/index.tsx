@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { suggestions } from "../utilities/interfaces";
+import { suggestions } from "../../utilities/interfaces";
 
-import Card from "../components/Card";
-import CardEmpty from "../components/CardEmpty";
-import NavBar from "../components/NavBar";
+import Card from "../../components/Card";
+import CardEmpty from "./CardEmpty";
+import NavBar from "../../components/NavBar";
 
-import { useFeature } from "../context/currentFeature";
+import { useFeature } from "../../context/currentFeature";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSuggestions, fetchState } from "../redux/suggestionsSlice";
-import { setUser, selectUser } from "../redux/userSlice";
+import { selectSuggestions, fetchState } from "../../redux/suggestionsSlice";
+import { setUser, selectUser } from "../../redux/userSlice";
 
 function Suggestions() {
   const { currentFeature } = useFeature();

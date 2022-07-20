@@ -1,0 +1,1 @@
+export const STATUS = ["Suggestion", "Planned", "In-Progress", "Live"]

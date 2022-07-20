@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import CommentReply from "./CommentReply";
 
-import { totalComments } from '../utilities/totalComments'
+import { totalComments } from '../../utilities/totalComments'
 import AddReply from "./AddReply";
 
-import { suggestions, comment } from "../utilities/interfaces";
-import ReplyToCommentButton from "./ui/ReplyToCommentButton";
+import { suggestions, comment } from "../../utilities/interfaces";
+import ReplyToCommentButton from "../../components/ui/ReplyToCommentButton";
 
 interface props{
   suggestion: suggestions

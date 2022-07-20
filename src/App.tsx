@@ -1,10 +1,10 @@
 import React from "react";
 
-import EditFeedback from "./pages/EditFeedback";
-import Feedback from "./pages/Feedback";
-import NewFeedback from "./pages/NewFeedback";
-import Roadmap from "./pages/Roadmap";
-import Suggestions from "./pages/Suggestions";
+import EditFeedback from "./pages/edit-feedback";
+import Feedback from "./pages/feedback";
+import NewFeedback from "./pages/new-feedback";
+import Roadmap from "./pages/roadmap";
+import Suggestions from "./pages/suggestions";
 
 import { Routes, Route, useParams } from "react-router-dom"
 import { FeatureContextProvider } from "./context/currentFeature";

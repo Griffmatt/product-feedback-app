@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import EditFeedbackContent from '../components/EditFeedbackContent';
+import EditFeedbackContent from './EditFeedbackContent';
 
-import BackButton from "../components/ui/BackButton";
-import CancelButton from '../components/ui/CancelButton';
+import BackButton from "../../components/ui/BackButton";
+import CancelButton from '../../components/ui/CancelButton';
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectSuggestions ,deleteFeedback, updateFeedback } from "../redux/suggestionsSlice";
+import { selectSuggestions ,deleteFeedback, updateFeedback } from "../../redux/suggestionsSlice";
 
 import { useNavigate, useParams } from "react-router-dom"
-import { suggestions } from "../utilities/interfaces"
+import { suggestions } from "../../utilities/interfaces"
 
 function EditFeedback() {
   const {id} = useParams()

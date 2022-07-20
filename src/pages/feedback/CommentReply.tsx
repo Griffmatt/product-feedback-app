@@ -1,7 +1,7 @@
 import React from 'react'
 
-import {  comment, reply } from "../utilities/interfaces"
-import ReplyButton from './ui/ReplyButton';
+import {  comment, reply } from "../../utilities/interfaces"
+import ReplyButton from '../../components/ui/ReplyButton';
 
 interface props{
     comment: comment, 

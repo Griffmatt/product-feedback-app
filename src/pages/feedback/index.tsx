@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import AddComment from "../components/AddComment";
+import AddComment from "./AddComment";
 
-import Card from "../components/Card";
-import FeedbackComments from "../components/FeedbackComments";
-import BackButton from "../components/ui/BackButton";
+import Card from "../../components/Card";
+import FeedbackComments from "./FeedbackComments";
+import BackButton from "../../components/ui/BackButton";
 
-import { selectSuggestions } from "../redux/suggestionsSlice";
+import { selectSuggestions } from "../../redux/suggestionsSlice";
 import { useSelector } from "react-redux";
 
-import { suggestions } from "../utilities/interfaces";
+import { suggestions } from "../../utilities/interfaces";
 
 function FeedbackDetails({ id }: { id: string | undefined }) {
   const suggestion = useSelector(selectSuggestions);

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {suggestions} from "../utilities/interfaces"
+import {suggestions} from "../../utilities/interfaces"
 
 interface props{
     suggestion: suggestions

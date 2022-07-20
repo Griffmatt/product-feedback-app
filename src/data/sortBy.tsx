@@ -1,0 +1,1 @@
+export const SORT_BY = ["Most Upvotes", "Least Upvotes", "Most Comments", "Least Comments"]

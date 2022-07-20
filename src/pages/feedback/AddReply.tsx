@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import { comment } from "../utilities/interfaces";
+import { comment } from "../../utilities/interfaces";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectUser } from "../redux/userSlice";
+import { selectUser } from "../../redux/userSlice";
 
-import{ addReply } from "../redux/suggestionsSlice";
-import { generateKey } from "../utilities/generateKey";
+import{ addReply } from "../../redux/suggestionsSlice";
+import { generateKey } from "../../utilities/generateKey";
 
 interface props{
   comment: comment,

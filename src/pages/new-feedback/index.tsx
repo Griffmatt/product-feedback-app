@@ -1,14 +1,14 @@
 import React from 'react'
-import NewFeedbackContent from '../components/NewFeedbackContent';
+import NewFeedbackContent from './NewFeedbackContent';
 
-import BackButton from "../components/ui/BackButton";
-import CancelButton from '../components/ui/CancelButton';
+import BackButton from "../../components/ui/BackButton";
+import CancelButton from '../../components/ui/CancelButton';
 
 import { useDispatch } from "react-redux";
 
-import { addFeedback } from "../redux/suggestionsSlice";
+import { addFeedback } from "../../redux/suggestionsSlice";
 
-import { generateKey } from "../utilities/generateKey"
+import { generateKey } from "../../utilities/generateKey"
 
 import { useNavigate } from "react-router-dom"
 
@@ -22,14 +22,13 @@ function NewFeedback() {
   const handleAddFeedback = () => {
     const title = document.getElementById("new-feedback-title") as HTMLInputElement
     const category = document.getElementById("new-feedback-category") as HTMLInputElement
-    const status = document.getElementById("new-feedback-status") as HTMLInputElement
     const description = document.getElementById("new-feedback-detail") as HTMLInputElement
     dispatch(addFeedback({
       id: generateKey("F"),
       title: title.value,
       category: category.value,
       upvotes: 0,
-      status: status.value,
+      status: "suggestion",
       description:description.value,
       comments: [
       ]
@@ -54,4 +53,4 @@ function NewFeedback() {
   )
 }
 
-export default NewFeedback
+export default NewFeedback;

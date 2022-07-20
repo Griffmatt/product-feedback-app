@@ -14,11 +14,6 @@ function NewFeedbackContent() {
         <input type="text" className="input-field" id="new-feedback-category"/>
         </label>
         <label className="p-2">
-        <span className="p--bold">Update Status</span>
-        Change feature state
-        <input type="text" className="input-field" id="new-feedback-status"/>
-        </label>
-        <label className="p-2">
         <span className="p--bold">Feedback Details</span>
         Include any sepcific comments on what should be improved, added, etc.
         <textarea className="input-field input-field__text-area" id="new-feedback-detail"/>
