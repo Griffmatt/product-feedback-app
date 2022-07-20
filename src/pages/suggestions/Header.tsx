@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { suggestions } from "../../utilities/interfaces";
 
-import HeaderSelectInput from "../../components/ui/HeaderrSelectInput"
+import HeaderSelectInput from "../../components/ui/HeaderSelectInput"
 
 import { SORT_BY } from "../../data/sortBy"
 

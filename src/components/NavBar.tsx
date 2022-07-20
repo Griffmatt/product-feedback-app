@@ -1,14 +1,21 @@
 import React, { useEffect, useState} from 'react'
-import { CATEGORY } from '../data/category';
+import { CATEGORY } from '../data/category'
 
-import { useFeature } from "../context/currentFeature";
+import { useFeature } from "../context/currentFeature"
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+
+import { selectSuggestions } from "../redux/suggestionsSlice"
+import { useSelector } from "react-redux"
+
+import { suggestions } from "../utilities/interfaces"
 
 function NavBar() {
     const [navOpen, setNavOpen] = useState(false)
 
     const {currentFeature, setCurrentFeature} = useFeature()
+
+    const suggestions = useSelector(selectSuggestions)
 
     const handleNavOpen = () =>{
         setNavOpen(!navOpen)
@@ -20,6 +27,14 @@ function NavBar() {
             setNavOpen(false)
         )
     }, [])
+
+    const countStatus = (status: string) => {
+        let count = 0
+        suggestions.forEach((suggestion: suggestions)=>{
+            if(suggestion.status === status) count++
+        })
+        return count
+    }
 
   return (
     <div className="nav">
@@ -46,9 +61,9 @@ function NavBar() {
                         <Link to="/roadmap"><p className="p-2 nav__roadmap--view">view</p></Link>
                     </div>
                     <ul>
-                        <li><span>Planned<span>0</span></span></li>
-                        <li><span>In-Progress<span>0</span></span></li>
-                        <li><span>Live<span>0</span></span></li>
+                        <li><span>Planned<span>{countStatus("planned")}</span></span></li>
+                        <li><span>In-Progress<span>{countStatus("in-progress")}</span></span></li>
+                        <li><span>Live<span>{countStatus("live")}</span></span></li>
                     </ul>
                 </div>
             </div>
