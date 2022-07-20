@@ -27,6 +27,9 @@
     &__content{
         display: grid;
         gap: .875rem;
+        &--select{
+            position: relative;
+        }
     }
 
     &__buttons{

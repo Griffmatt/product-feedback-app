@@ -1,5 +1,8 @@
 import React from 'react'
 
+import ModalSelectInput from '../../components/ui/ModalSelectInput'
+import { STATUS } from '../../data/status'
+
 function NewFeedbackContent() {
   return (
     <div className="modal__content">
@@ -8,10 +11,10 @@ function NewFeedbackContent() {
         Add a short, descriptive headline
         <input type="text" className="input-field" id="new-feedback-title"/>
         </label>
-        <label className="p-2">
+        <label className="p-2 modal__content--select">
         <span className="p--bold">Category</span>
         Choose a category for your feedback
-        <input type="text" className="input-field" id="new-feedback-category"/>
+        <ModalSelectInput options={STATUS} defaultValue="suggestion"/>
         </label>
         <label className="p-2">
         <span className="p--bold">Feedback Details</span>

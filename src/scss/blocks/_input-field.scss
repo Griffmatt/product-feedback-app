@@ -15,4 +15,17 @@
     &:hover, :focus{
         border: 1px solid var(--blue);
     }
+
+    &__select{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        p{
+            grid-column: 1;
+        }
+        svg{
+            grid-column: 2;
+            justify-self: end;
+            align-self: center;
+        }
+    }
 }

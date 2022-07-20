@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { suggestions } from "../../utilities/interfaces";
 
-import SelectInput from "../../components/ui/SelectInput"
+import HeaderSelectInput from "../../components/ui/HeaderrSelectInput"
+
+import { SORT_BY } from "../../data/sortBy"
 
 interface props{
     suggestions: suggestions[]
 }
 
 function Header({suggestions}: props) {
+
+  const [sortBy, setSortBy] = useState("Most Upvotes")
+  const [selectopen, setSelectOpen] = useState(false)
+
   return (
     <div className="header">
           <div className="header__menu">
@@ -29,9 +35,9 @@ function Header({suggestions}: props) {
             </h3>
             <label className="p-2 header__select">
               Sort by :
-              <span>
+              <span onClick={()=> setSelectOpen(!selectopen)}>
                 {" "}
-                <SelectInput/>
+                {sortBy}
                 <svg width="13" height="8" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M1 1l4 4 4-4"
@@ -41,6 +47,7 @@ function Header({suggestions}: props) {
                   />
                 </svg>
               </span>
+              <HeaderSelectInput options={SORT_BY} selectOpen={selectopen} setSelectOpen={setSelectOpen}/>
             </label>
           </div>
           <Link to="/add-new-feedback">
