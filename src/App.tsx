@@ -34,6 +34,7 @@ function App() {
             <Route path="/add-new-feedback" element={<NewFeedback/>}/>
             <Route path={`/edit-feedback/:id`} element={<EditFeedback/>}/>
             <Route path={`/:id`} element={<FeedbackId/>}/>
+            <Route path ="/roadmap" element ={<Roadmap/>}/>
           </Routes>
         </FeatureContextProvider>
     </Provider>

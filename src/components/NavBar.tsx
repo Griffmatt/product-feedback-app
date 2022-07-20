@@ -3,6 +3,8 @@ import { CATEGORY } from '../data/category';
 
 import { useFeature } from "../context/currentFeature";
 
+import { Link } from "react-router-dom";
+
 function NavBar() {
     const [navOpen, setNavOpen] = useState(false)
 
@@ -41,7 +43,7 @@ function NavBar() {
                 <div className="nav__roadmap">
                     <div>
                         <h3>Roadmap</h3>
-                        <p className="p-2 nav__roadmap--view">view</p>
+                        <Link to="/roadmap"><p className="p-2 nav__roadmap--view">view</p></Link>
                     </div>
                     <ul>
                         <li><span>Planned<span>0</span></span></li>
