@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
 
 interface props{
-  options: string[],
-  selectOpen?: boolean,
-  setSelectOpen: React.Dispatch<React.SetStateAction<boolean>>
+  options: string[]
 }
 
 
-function HeaderSelectInput({options, selectOpen, setSelectOpen}: props) {
+function HeaderSelectInput({options}: props) {
 
   const [selectedOption, setSelectedOption] = useState("Most Upvotes")
+  const [selectOpen, setSelectOpen] = useState(false)
   return (
     <>
+    <span onClick={()=> setSelectOpen(!selectOpen)}>
+                {" "}
+                {selectedOption}
+                <svg width="13" height="8" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M1 1l4 4 4-4"
+                    strokeWidth="2"
+                    fill="none"
+                    fillRule="evenodd"
+                  />
+                </svg>
+              </span>
       <div className={`${selectOpen?"select__menu--active": ""} select__menu`}>
         {options.map((option: string)=>{
           return(
