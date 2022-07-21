@@ -8,6 +8,7 @@ import Suggestions from "./pages/suggestions";
 
 import { Routes, Route, useParams } from "react-router-dom"
 import { FeatureContextProvider } from "./context/currentFeature";
+import{ SortByContextProvider } from "./context/sortBySuggestions";
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -29,6 +30,7 @@ function App() {
   return (
     <Provider store={store}>
         <FeatureContextProvider>
+          <SortByContextProvider>
           <Routes>
             <Route path="/" element={<Suggestions/>}/>
             <Route path="/add-new-feedback" element={<NewFeedback/>}/>
@@ -36,6 +38,7 @@ function App() {
             <Route path={`/:id`} element={<FeedbackId/>}/>
             <Route path ="/roadmap" element ={<Roadmap/>}/>
           </Routes>
+          </SortByContextProvider>
         </FeatureContextProvider>
     </Provider>
   )

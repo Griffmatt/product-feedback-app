@@ -1,4 +1,6 @@
-export const totalComments = (comments: any) => {
+import { comment } from "../utilities/interfaces"
+
+export const totalComments = (comments: comment[]) => {
     let total = 0
     if(comments){
         comments.forEach((comment: any)=>{

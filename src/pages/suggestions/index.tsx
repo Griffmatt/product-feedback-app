@@ -13,9 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectSuggestions, fetchState } from "../../redux/suggestionsSlice";
 import { setUser, selectUser } from "../../redux/userSlice";
 
+import { sortSuggestions } from "../../utilities/sortSuggestions";
+import { useSortBy } from "../../context/sortBySuggestions";
+
 
 function Suggestions() {
   const { currentFeature } = useFeature();
+  const { sortBy } = useSortBy()
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<Array<any>>(
     []
@@ -23,11 +27,11 @@ function Suggestions() {
 
   const dispatch = useDispatch();
 
-  const suggestion = useSelector(selectSuggestions);
+  const suggestions = useSelector(selectSuggestions);
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    if (suggestion.length === 0) {
+    if (suggestions.length === 0) {
       dispatch(fetchState());
     }
     if (user === null) {
@@ -37,14 +41,14 @@ function Suggestions() {
 
   useEffect(() => {
     setFilteredSuggestions(
-      suggestion.filter(
+      sortSuggestions(sortBy, suggestions).filter(
         (suggestion: suggestions) =>
           suggestion.status === "suggestion" &&
           (suggestion.category === currentFeature.toLocaleLowerCase() ||
             currentFeature === "All")
       )
     );
-  }, [currentFeature, suggestion]);
+  }, [currentFeature, suggestions, sortBy]);
 
   return (
     <div className="container container--row">

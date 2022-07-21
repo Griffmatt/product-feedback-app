@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { useSortBy } from "../../context/sortBySuggestions"
+
 interface props{
   options: string[]
 }
@@ -7,13 +9,14 @@ interface props{
 
 function HeaderSelectInput({options}: props) {
 
-  const [selectedOption, setSelectedOption] = useState("Most Upvotes")
   const [selectOpen, setSelectOpen] = useState(false)
+
+  const { sortByValue, sortBy } = useSortBy()
   return (
     <>
     <span onClick={()=> setSelectOpen(!selectOpen)}>
                 {" "}
-                {selectedOption}
+                {sortBy}
                 <svg width="13" height="8" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M1 1l4 4 4-4"
@@ -26,9 +29,9 @@ function HeaderSelectInput({options}: props) {
       <div className={`${selectOpen?"select__menu--active": ""} select__menu`}>
         {options.map((option: string)=>{
           return(
-            <div className="select__option" onClick={()=> setSelectedOption(option)}>
-              <p className={`${option===selectedOption? "select__option--active":""}`}>{option}</p>
-              {option===selectedOption?<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg>:""}
+            <div className="select__option" onClick={()=> sortByValue(option)}>
+              <p className={`${option===sortBy? "select__option--active":""}`}>{option}</p>
+              {option===sortBy?<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg>:""}
             </div>
           )
         })}
