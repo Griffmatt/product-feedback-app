@@ -16,7 +16,7 @@ const firstLetterUpperCase = (word: string) => {
 
   return (
     <>
-      <div className="input-field input-field__select" onClick={()=> setSelectOpen(!selectOpen)}>
+      <div className="input-field input-field__select" onClick={()=> setSelectOpen(!selectOpen)} defaultValue={selectedOption}>
         <p>{selectedOption}</p>
         <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
           <path

@@ -40,14 +40,14 @@ function Suggestions() {
   }, []);
 
   useEffect(() => {
-    setFilteredSuggestions(
+   setFilteredSuggestions(
       sortSuggestions(sortBy, suggestions).filter(
         (suggestion: suggestions) =>
           suggestion.status === "suggestion" &&
           (suggestion.category === currentFeature.toLocaleLowerCase() ||
             currentFeature === "All")
       )
-    );
+    )
   }, [currentFeature, suggestions, sortBy]);
 
   return (

@@ -4,6 +4,9 @@ import data from "../data/data.json"
 
 import { suggestions, comment } from "../utilities/interfaces";
 
+interface stateSuggestions{
+    suggestions: state
+}
 interface state{
     suggestions: suggestions[]
 }
@@ -91,6 +94,6 @@ export const suggestionsSlice = createSlice({
 
 export const { addSuggestion, fetchState, upVote, downVote, addComment, addReply, deleteComment, deleteReply, addFeedback, updateFeedback, deleteFeedback } = suggestionsSlice.actions;
 
-export const selectSuggestions = (state: any) => state.suggestions.suggestions;
+export const selectSuggestions = (state: stateSuggestions) => state.suggestions.suggestions;
 
 export default suggestionsSlice.reducer;
