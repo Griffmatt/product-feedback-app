@@ -77,13 +77,9 @@ export const suggestionsSlice = createSlice({
             state.suggestions = [...state.suggestions, action.payload]
         },
         updateFeedback: (state, action) => {
-            state.suggestions.forEach(suggestion=>{
+            state.suggestions.forEach((suggestion, index)=>{
                 if(suggestion.id.toString() === action.payload.id.toString()){
-                    console.log("works")
-                    suggestion.title = action.payload.title
-                    suggestion.status = action.payload.status
-                    suggestion.description = action.payload.description
-                    suggestion.category = action.payload.category
+                     state.suggestions[index] = {...suggestion, ...action.payload}
                 }
             })
         },

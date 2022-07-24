@@ -21,7 +21,6 @@ function ReplyToCommentButton({comment, index, handleOpenReply}: props) {
 
     const handleDeleteComment = () => {
         dipsatch(deleteComment(comment.id))
-        console.log(comment.id)
     }
 
   return (

@@ -14,6 +14,7 @@ const firstLetterUpperCase = (word: string) => {
     }
   const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
   const [menuOpen, setMenuOpen] = useState(false)
+  
   const handleShown = () =>{
     setMenuOpen(!menuOpen)
   }

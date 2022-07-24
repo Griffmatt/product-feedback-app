@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import ModalSelectInput from "../../components/ui/ModalSelectInput";
 
@@ -15,18 +15,8 @@ interface props {
 
 function EditFeedbackContent({ suggestion, feedback, setFeedback}: props) {
 
-  useEffect(()=>{
-    setFeedback({
-      id: suggestion.id,
-      title: suggestion.title,
-      description: suggestion.description,
-      category: suggestion.category,
-      status: suggestion.status
-    })
-  }, [])
 
   const handleFeedbackChange = (name: string, value: string) =>{
-    console.log(value)
     setFeedback({
       ...feedback,
       [name]: value
