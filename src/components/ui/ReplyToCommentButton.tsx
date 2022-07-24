@@ -20,7 +20,7 @@ function ReplyToCommentButton({comment, index, handleOpenReply}: props) {
     const dipsatch = useDispatch()
 
     const handleDeleteComment = () => {
-        dipsatch(deleteComment(comment.id))
+        dipsatch(deleteComment({id: comment.id, feedbackId: comment.feedbackId}))
     }
 
   return (

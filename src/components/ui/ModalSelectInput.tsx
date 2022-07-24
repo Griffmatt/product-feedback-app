@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface props {
   options: string[],
@@ -10,11 +10,12 @@ interface props {
 function ModalSelectInput({ options, defaultValue, name, handleFeedbackChange }: props) {
 
 const firstLetterUpperCase = (word: string) => {
+    if(defaultValue === "ui" || defaultValue === "ux") return defaultValue.toUpperCase()
     return `${word[0].toUpperCase()}${word.slice(1)}`
     }
   const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
   const [menuOpen, setMenuOpen] = useState(false)
-  
+
   const handleShown = () =>{
     setMenuOpen(!menuOpen)
   }
