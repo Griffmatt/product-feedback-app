@@ -168,6 +168,7 @@
             {
               "content": "Bumping this. It would be good to have a tab with a feed of people I follow so it's easy to see what challenges they’ve done lately. I learn a lot by reading good developers' code.",
               "replyingTo": "arlen_the_marlin",
+              "commentId": 0,
               "id": "R0",
               "user": {
                 "image": "./assets/user-images/image-zena.jpg",
@@ -178,7 +179,7 @@
           ]
         },
         {
-          "id": 0,
+          "id": 1,
           "content": "I've been saving the profile URLs of a few people and I check what they’ve been doing from time to time. Being able to follow them solves that",
           "user": {
             "image": "./assets/user-images/image-jackson.jpg",

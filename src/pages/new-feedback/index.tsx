@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState}from 'react'
 import NewFeedbackContent from './NewFeedbackContent';
 
 import BackButton from "../../components/ui/BackButton";
@@ -18,22 +18,27 @@ function NewFeedback() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const handleAddFeedback = () => {
-    const title = document.getElementById("new-feedback-title") as HTMLInputElement
-    const category = document.getElementById("new-feedback-category") as HTMLInputElement
-    const description = document.getElementById("new-feedback-detail") as HTMLInputElement
-    dispatch(addFeedback({
+  const [feedback, setFeedback] = useState({
       id: generateKey("F"),
-      title: title.value,
-      category: category.value,
+      title: "",
+      category: "feature",
       upvotes: 0,
       status: "suggestion",
-      description:description.value,
+      description: "",
       comments: [
       ]
-    }))
+  })
 
+  const handleFeedbackChange = (name: string, value: string) =>{
+    setFeedback({
+      ...feedback,
+      [name]: value
+    })
+  }
+
+
+  const handleAddFeedback = () => {
+    dispatch(addFeedback(feedback))
     navigate("/")
   }
 
@@ -43,7 +48,7 @@ function NewFeedback() {
       <div className="modal">
       <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg" className="modal__image"><defs><radialGradient cx="103.9%" cy="-10.387%" fx="103.9%" fy="-10.387%" r="166.816%" id="a"><stop stop-color="#E84D70" offset="0%"/><stop stop-color="#A337F6" offset="53.089%"/><stop stop-color="#28A7ED" offset="100%"/></radialGradient></defs><g fill="none" fill-rule="evenodd"><circle fill="url(#a)" cx="28" cy="28" r="28"/><path fill="#FFF" fill-rule="nonzero" d="M30.343 36v-5.834h5.686v-4.302h-5.686V20h-4.597v5.864H20v4.302h5.746V36z"/></g></svg>
         <h3>Create New Feedback</h3>
-        <NewFeedbackContent/>
+        <NewFeedbackContent handleFeedbackChange={handleFeedbackChange}/>
         <div className="modal__buttons">
           <button className="button button--purple button--lg modal__buttons--save" onClick={handleAddFeedback}>Add Feedback</button>
           <CancelButton/>

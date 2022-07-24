@@ -12,6 +12,12 @@ function HeaderSelectInput({options}: props) {
   const [selectOpen, setSelectOpen] = useState(false)
 
   const { sortByValue, sortBy } = useSortBy()
+
+ const  handleMenuClick = (option: string) => {
+    sortByValue(option)
+    setSelectOpen(false)
+  }
+
   return (
     <>
     <span onClick={()=> setSelectOpen(!selectOpen)}>
@@ -29,7 +35,7 @@ function HeaderSelectInput({options}: props) {
       <div className={`${selectOpen?"select__menu--active": ""} select__menu`}>
         {options.map((option: string)=>{
           return(
-            <div className="select__option" onClick={()=> sortByValue(option)}>
+            <div className="select__option" onClick={()=> handleMenuClick(option)} key={option}>
               <p className={`${option===sortBy? "select__option--active":""}`}>{option}</p>
               {option===sortBy?<svg xmlns="http://www.w3.org/2000/svg" width="13" height="11"><path fill="none" stroke="#AD1FEA" stroke-width="2" d="M1 5.233L4.522 9 12 1"/></svg>:""}
             </div>

@@ -16,9 +16,20 @@
         border: 1px solid var(--blue);
     }
 
+    &__wrapper{
+        position: relative;
+        svg{
+            position: absolute;
+            right: 1rem;
+            top: calc(50% + .35rem) ;
+        }
+    }
+
     &__select{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        cursor: pointer;
         p{
             grid-column: 1;
         }

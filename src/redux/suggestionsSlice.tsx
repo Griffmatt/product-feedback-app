@@ -78,7 +78,8 @@ export const suggestionsSlice = createSlice({
         },
         updateFeedback: (state, action) => {
             state.suggestions.forEach(suggestion=>{
-                if(suggestion.id.toLocaleString() === action.payload.id){
+                if(suggestion.id.toString() === action.payload.id.toString()){
+                    console.log("works")
                     suggestion.title = action.payload.title
                     suggestion.status = action.payload.status
                     suggestion.description = action.payload.description

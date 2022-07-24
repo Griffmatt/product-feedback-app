@@ -1,41 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface props {
   options: string[],
-  defaultValue: string
+  defaultValue: string,
+  name: string,
+  handleFeedbackChange: (name: string, value: string) => void
 }
 
-function ModalSelectInput({ options, defaultValue }: props) {
+function ModalSelectInput({ options, defaultValue, name, handleFeedbackChange }: props) {
 
 const firstLetterUpperCase = (word: string) => {
     return `${word[0].toUpperCase()}${word.slice(1)}`
     }
   const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
-  const [selectOpen, setSelectOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const handleShown = () =>{
+    setMenuOpen(!menuOpen)
+  }
+
+  const handleChange = (option: string) =>{
+    setSelectedOption(option)
+    handleFeedbackChange(name, option.toLowerCase())
+  }
 
 
   return (
     <>
-      <div className="input-field input-field__select" onClick={()=> setSelectOpen(!selectOpen)} defaultValue={selectedOption}>
-        <p>{selectedOption}</p>
-        <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M1 1l4 4 4-4"
-            stroke="#4661E6"
-            stroke-width="2"
-            fill="none"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
+      <div className="input-field__wrapper">
+        <input readOnly className="input-field input-field__select" onClick={()=> handleShown()} value={selectedOption} />
+          <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1 1l4 4 4-4"
+              stroke="#4661E6"
+              stroke-width="2"
+              fill="none"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
       <div
-        className={`${selectOpen ? "select__menu--active" : ""} select__menu select__menu--modal`}
+        className={`${menuOpen ? "select__menu--active" : ""} select__menu select__menu--modal`}
       >
         {options.map((option: string) => {
           return (
             <div
               className="select__option"
-              onClick={() => setSelectedOption(option)}
+              onClick={() => handleChange(option)}
             >
               <p
                 className={`${
@@ -60,12 +70,6 @@ const firstLetterUpperCase = (word: string) => {
           );
         })}
       </div>
-      <div
-        className={`${
-          selectOpen ? "select__backdrop--active" : ""
-        } select__backdrop`}
-        onClick={() => setSelectOpen(false)}
-      />
     </>
   );
 }
