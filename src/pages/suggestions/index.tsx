@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import { suggestions } from "../../utilities/interfaces";
 
-import Card from "../../components/Card";
+import Card from "../../components/SuggestionsCard";
 import CardEmpty from "./CardEmpty";
 import NavBar from "../../components/NavBar";
-import Header from "./Header";
+import Header from "./SugestionsHeader";
 
 import { useFeature } from "../../context/currentFeature";
 import { useSelector, useDispatch } from "react-redux";
@@ -59,11 +59,11 @@ function Suggestions() {
           {filteredSuggestions.length === 0 ? (
             <CardEmpty />
           ) : (
-            filteredSuggestions.map((filteredSuggestions: suggestions) => {
+            filteredSuggestions.map((suggestion: suggestions) => {
               return (
-                <div key={filteredSuggestions.id}>
-                  <Link to={`/${filteredSuggestions.id}`}>
-                    <Card suggestion={filteredSuggestions} />
+                <div key={suggestion.id}>
+                  <Link to={`/${suggestion.id}`}>
+                    <Card suggestion={suggestion} />
                   </Link>
                 </div>
               );

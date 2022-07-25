@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddComment from "./AddComment";
 
-import Card from "../../components/Card";
+import Card from "../../components/SuggestionsCard";
 import FeedbackComments from "./FeedbackComments";
 import BackButton from "../../components/ui/BackButton";
 

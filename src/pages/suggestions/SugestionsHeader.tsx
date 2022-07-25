@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 import { suggestions } from "../../utilities/interfaces";
 
 import HeaderSelectInput from "../../components/ui/HeaderSelectInput"
 
 import { SORT_BY } from "../../data/sortBy"
+import AddFeedbackButton from '../../components/ui/AddFeedbackButton';
 
 interface props{
     suggestions: suggestions[]
@@ -35,11 +35,7 @@ function Header({suggestions}: props) {
               <HeaderSelectInput options={SORT_BY} />
             </label>
           </div>
-          <Link to="/add-new-feedback">
-            <button className="p-2 button button--purple button--md">
-              + Add Feedback
-            </button>
-          </Link>
+          <AddFeedbackButton/>
         </div>
   )
 }

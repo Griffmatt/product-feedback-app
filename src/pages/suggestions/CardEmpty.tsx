@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
+import AddFeedbackButton from '../../components/ui/AddFeedbackButton';
 
 function CardEmpty() {
   return (
@@ -10,7 +9,7 @@ function CardEmpty() {
             <h3>There is no feedback yet.</h3>
             <p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
         </div>
-        <Link to="/add-new-feedback"><button className="p-2 button button--purple button--md">+ Add Feedback</button></Link>
+        <AddFeedbackButton/>
     </div>
   )
 }

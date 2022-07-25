@@ -73,8 +73,11 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    stroke: var(--blue);
     cursor: pointer;
-    p{
-        color: var(--dark-blue-2);
+    color: var(--dark-blue-2);
+    &--white{
+        color: var(--white);
+        stroke: var(--white);
     }
 }
