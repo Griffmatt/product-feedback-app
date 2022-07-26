@@ -59,4 +59,8 @@
             color: var(--purple-hover)
         }
     }
+
+    &__image--active{
+        transform: rotate(180deg);
+    }
 }

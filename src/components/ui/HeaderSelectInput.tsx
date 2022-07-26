@@ -9,21 +9,21 @@ interface props{
 
 function HeaderSelectInput({options}: props) {
 
-  const [selectOpen, setSelectOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const { sortByValue, sortBy } = useSortBy()
 
  const  handleMenuClick = (option: string) => {
     sortByValue(option)
-    setSelectOpen(false)
+    setMenuOpen(false)
   }
 
   return (
     <>
-    <span onClick={()=> setSelectOpen(!selectOpen)}>
+    <span onClick={()=> setMenuOpen(!menuOpen)}>
                 {" "}
                 {sortBy}
-                <svg width="13" height="8" xmlns="http://www.w3.org/2000/svg">
+                <svg width="13" height="8" xmlns="http://www.w3.org/2000/svg" className={`${menuOpen ? "select__image--active" : ""}`}>
                   <path
                     d="M1 1l4 4 4-4"
                     strokeWidth="2"
@@ -31,8 +31,8 @@ function HeaderSelectInput({options}: props) {
                     fillRule="evenodd"
                   />
                 </svg>
-              </span>
-      <div className={`${selectOpen?"select__menu--active": ""} select__menu`}>
+      </span>
+      <div className={`${menuOpen?"select__menu--active": ""} select__menu`}>
         {options.map((option: string)=>{
           return(
             <div className="select__option" onClick={()=> handleMenuClick(option)} key={option}>
@@ -42,7 +42,7 @@ function HeaderSelectInput({options}: props) {
           )
         })}
       </div>
-      <div className={`${selectOpen?"select__backdrop--active": ""} select__backdrop`} onClick={()=> setSelectOpen(false)}/>
+      <div className={`${menuOpen?"select__backdrop--active": ""} select__backdrop`} onClick={()=> setMenuOpen(false)}/>
     </>
   )
 }

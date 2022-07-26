@@ -30,7 +30,7 @@ const firstLetterUpperCase = (word: string) => {
     <>
       <div className="input-field__wrapper">
         <input readOnly className="input-field input-field__select" onClick={()=> handleShown()} value={selectedOption} />
-          <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+          <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" className={`${menuOpen ? "select__image--active" : ""}`}>
             <path
               d="M1 1l4 4 4-4"
               stroke="#4661E6"
