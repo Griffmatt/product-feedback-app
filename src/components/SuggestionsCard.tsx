@@ -27,6 +27,7 @@ function Card({suggestion}: props) {
     const handleUpVote = (e: React.MouseEvent) => {
 
         e.stopPropagation();
+        e.preventDefault();
         
         if(user.upvotes.includes(suggestion.id)){
             dispatch(removeUpvote(suggestion.id))
