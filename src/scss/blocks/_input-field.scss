@@ -39,4 +39,15 @@
             align-self: center;
         }
     }
+
+    &__error{
+        border-color: var(--red);
+        &:hover{
+            border-color: var(--red);
+        }
+        &--text{
+            color: var(--red);
+            font-size: .8375rem;
+        }
+    }
 }

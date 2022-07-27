@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 
 function NewFeedbackContent() {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,19 +28,21 @@ function NewFeedbackContent() {
     <>
       <form className="modal__content"  onSubmit={handleSubmit(handleAddFeedback)}>
           <label className="p-2">
-          <span className="p--bold">Feedback title</span>
+          <p className="p--bold">Feedback title</p>
           Add a short, descriptive headline
-          <input type="text" className="input-field" {...register("title")}/>
+          <input type="text" className={` ${errors.title? "input-field__error": ""} input-field `}  {...register("title", { required: true})}/>
+          {errors.title && <p className="input-field__error--text">Title cannot be empty</p>}
           </label>
           <label className="p-2 modal__content--select">
-          <span className="p--bold">Category</span>
+          <p className="p--bold">Category</p>
           Choose a category for your feedback
           <ModalSelectInput options={CATEGORY} defaultValue="feature" name="category" register={register}/>
           </label>
           <label className="p-2">
-          <span className="p--bold">Feedback Details</span>
+          <p className="p--bold">Feedback Details</p>
           Include any sepcific comments on what should be improved, added, etc.
-          <textarea className="input-field input-field__text-area"  {...register("description")} />
+          <textarea className={` ${errors.description? "input-field__error": ""} input-field input-field__text-area`}  {...register("description", {required: true})} />
+          {errors.description && <p className="input-field__error--text">Description cannot be empty</p>}
           </label>
           <div className="modal__buttons">
             <button className="button button--purple button--lg modal__buttons--save" type="submit" >Add Feedback</button>

@@ -38,6 +38,7 @@ function AddComment({ suggestion }: props) {
         })
       );
       input.value = ""
+      setCommentLength(0)
     }
   };
 
