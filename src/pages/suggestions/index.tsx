@@ -43,8 +43,8 @@ function Suggestions() {
    setFilteredSuggestions(
       sortSuggestions(sortBy, suggestions).filter(
         (suggestion: suggestions) =>
-          suggestion.status === "suggestion" &&
-          (suggestion.category === currentFeature.toLocaleLowerCase() ||
+          suggestion.status.toLowerCase() === "suggestion" &&
+          (suggestion.category.toLowerCase() === currentFeature.toLocaleLowerCase() ||
             currentFeature === "All")
       )
     )

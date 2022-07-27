@@ -1,5 +1,7 @@
 import React from "react";
 
+import { deleteFeedback, updateFeedback } from "../../redux/suggestionsSlice";
+
 import ModalSelectInput from "../../components/ui/ModalSelectInput";
 
 import { CATEGORY } from "../../data/category";
@@ -7,25 +9,38 @@ import { STATUS } from "../../data/status";
 
 import { suggestions } from "../../utilities/interfaces";
 
+import CancelButton from '../../components/ui/CancelButton';
+
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom"
+
 interface props {
-  suggestion: suggestions,
-  setFeedback: React.Dispatch<React.SetStateAction<{}>>,
-  feedback: {}
+  suggestion: suggestions
 }
 
-function EditFeedbackContent({ suggestion, feedback, setFeedback}: props) {
+function EditFeedbackContent({ suggestion }: props) {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { register, handleSubmit } = useForm();
+
+  const handleUpdateFeedback = (data: any) => {
+    
+    dispatch(updateFeedback({id: suggestion.id, ...data}))
+
+    navigate(-1)
+  }
 
 
-  const handleFeedbackChange = (name: string, value: string) =>{
-    setFeedback({
-      ...feedback,
-      [name]: value
-    })
+  const handleDeleteFeedback = () => {
+    dispatch(deleteFeedback(suggestion.id))
+    navigate("/")
   }
   
 
   return (
-    <div className="modal__content">
+    <form className="modal__content" onSubmit={handleSubmit(handleUpdateFeedback)}>
       <label className="p-2">
         <span className="p--bold">Feedback title</span>
         Add a short, descriptive headline
@@ -33,19 +48,18 @@ function EditFeedbackContent({ suggestion, feedback, setFeedback}: props) {
           type="text"
           className="input-field"
           defaultValue={suggestion.title}
-          name="title"
-          onChange={(e)=>handleFeedbackChange(e.target.name, e.target.value)}
+          {...register("title")}
         />
       </label>
       <label className="p-2 modal__content--select">
         <span className="p--bold">Category</span>
         Choose a category for your feedback
-        <ModalSelectInput options={CATEGORY.slice(1)} defaultValue={suggestion.category} name="category" handleFeedbackChange={handleFeedbackChange}/>
+        <ModalSelectInput options={CATEGORY.slice(1)} defaultValue={suggestion.category} name="category" register={register}/>
       </label>
       <label className="p-2 modal__content--select">
         <span className="p--bold">Update Status</span>
         Change feature state
-        <ModalSelectInput options={STATUS} defaultValue={suggestion.status} name="status" handleFeedbackChange={handleFeedbackChange} />
+        <ModalSelectInput options={STATUS} defaultValue={suggestion.status} name="status" register={register} />
       </label>
       <label className="p-2">
         <span className="p--bold">Feedback Detail</span>
@@ -53,11 +67,15 @@ function EditFeedbackContent({ suggestion, feedback, setFeedback}: props) {
         <textarea
           className="input-field input-field__text-area"
           defaultValue={suggestion.description}
-          onChange={(e)=>handleFeedbackChange(e.target.name, e.target.value)}
-          name="description"
+          {...register("description")}
         />
       </label>
-    </div>
+      <div className="modal__buttons">
+          <button className="button button--purple button--lg modal__buttons--save" type="submit">Save Changes</button>
+          <CancelButton/>
+          <button className="button button--red button--lg modal__buttons--delete"onClick={handleDeleteFeedback}>Delete</button>
+      </div>
+    </form>
   );
 }
 

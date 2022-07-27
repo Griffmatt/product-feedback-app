@@ -63,6 +63,7 @@ export const suggestionsSlice = createSlice({
             })
         },
         addFeedback: (state, action) => {
+            console.log(action.payload)
             state.suggestions = [...state.suggestions, action.payload]
         },
         updateFeedback: (state, action) => {

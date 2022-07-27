@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 
+import { firstLetterUpperCase } from "../../utilities/firstLetterUpperCase"
+
 interface props {
   options: string[],
   defaultValue: string,
   name: string,
-  handleFeedbackChange: (name: string, value: string) => void
+  handleFeedbackChange?: (name: string, value: string) => void,
+  register: any
 }
 
-function ModalSelectInput({ options, defaultValue, name, handleFeedbackChange }: props) {
+function ModalSelectInput({ options, defaultValue, name, handleFeedbackChange, register }: props) {
 
-const firstLetterUpperCase = (word: string) => {
-    if(defaultValue === "ui" || defaultValue === "ux") return defaultValue.toUpperCase()
-    return `${word[0].toUpperCase()}${word.slice(1)}`
-    }
   const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -22,14 +21,13 @@ const firstLetterUpperCase = (word: string) => {
 
   const handleChange = (option: string) =>{
     setSelectedOption(option)
-    handleFeedbackChange(name, option.toLowerCase())
   }
 
 
   return (
     <>
       <div className="input-field__wrapper">
-        <input readOnly className="input-field input-field__select" onClick={()=> handleShown()} value={selectedOption} />
+        <input readOnly className="input-field input-field__select" onClick={()=> handleShown()} value={selectedOption} {...register(`${name}`)}/>
           <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" className={`${menuOpen ? "select__image--active" : ""}`}>
             <path
               d="M1 1l4 4 4-4"
@@ -48,6 +46,7 @@ const firstLetterUpperCase = (word: string) => {
             <div
               className="select__option"
               onClick={() => handleChange(option)}
+              key={option}
             >
               <p
                 className={`${
