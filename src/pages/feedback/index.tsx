@@ -12,8 +12,12 @@ import { useSelector } from "react-redux";
 
 import { suggestions } from "../../utilities/interfaces";
 
+import { selectUser} from "../../redux/userSlice"
+
+
 function FeedbackDetails({ id }: { id: string | undefined }) {
   const suggestion = useSelector(selectSuggestions);
+  const user = useSelector(selectUser)
 
   const [currentSuggestion, setCurrentSuggestion] = useState<suggestions>();
 
@@ -28,11 +32,11 @@ function FeedbackDetails({ id }: { id: string | undefined }) {
           <div className="feedback">
             <div className="feedback__nav">
               <BackButton />
-              <Link to={`/edit-feedback/${currentSuggestion.id}`}>
+              {user?.admin && <Link to={`/edit-feedback/${currentSuggestion.id}`}>
                 <button className="p-2 button button--blue button--md">
                   Edit Feedback
                 </button>
-              </Link>
+              </Link>}
             </div>
             <Card suggestion={currentSuggestion} />
             <FeedbackComments suggestion={currentSuggestion} />

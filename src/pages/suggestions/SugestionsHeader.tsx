@@ -6,6 +6,7 @@ import HeaderSelectInput from "../../components/ui/HeaderSelectInput"
 import { SORT_BY } from "../../data/sortBy"
 import AddFeedbackButton from '../../components/ui/AddFeedbackButton';
 
+
 interface props{
     suggestions: suggestions[]
 }
@@ -39,5 +40,6 @@ function Header({suggestions}: props) {
     </div>
   )
 }
+
 
 export default Header
