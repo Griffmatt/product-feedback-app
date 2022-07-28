@@ -1,4 +1,4 @@
 export const firstLetterUpperCase = (word: string) => {
     if(word === "ui" || word === "ux") return word.toUpperCase()
-    return `${word[0].toUpperCase()}${word.slice(1)}`
+    return `${word.slice(0, 1).toUpperCase()}${word.slice(1)}`
   }

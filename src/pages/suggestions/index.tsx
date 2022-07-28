@@ -40,11 +40,12 @@ function Suggestions() {
   }, []);
 
   useEffect(() => {
+    console.log(suggestions)
    setFilteredSuggestions(
       sortSuggestions(sortBy, suggestions).filter(
         (suggestion: suggestions) =>
           suggestion.status.toLowerCase() === "suggestion" &&
-          (suggestion.category.toLowerCase() === currentFeature.toLocaleLowerCase() ||
+          (suggestion.category.toLowerCase() === currentFeature.toLowerCase() ||
             currentFeature === "All")
       )
     )

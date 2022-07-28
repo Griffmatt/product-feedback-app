@@ -10,7 +10,7 @@ interface props {
   register: any
 }
 
-function ModalSelectInput({ options, defaultValue, name, handleFeedbackChange, register }: props) {
+function ModalSelectInput({ options, defaultValue, name, register }: props) {
 
   const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
   const [menuOpen, setMenuOpen] = useState(false)

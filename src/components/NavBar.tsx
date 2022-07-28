@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { CATEGORY } from '../data/category'
 
 import { useFeature } from "../context/currentFeature"
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import { selectSuggestions } from "../redux/suggestionsSlice"
 import { useSelector } from "react-redux"
 
-import { suggestions } from "../utilities/interfaces"
+import { countStatus } from "./../utilities/countStatus"
 
 function NavBar() {
     const [navOpen, setNavOpen] = useState(false)
@@ -28,13 +28,10 @@ function NavBar() {
         )
     }, [])
 
-    const countStatus = (status: string) => {
-        let count = 0
-        suggestions.forEach((suggestion: suggestions)=>{
-            if(suggestion.status === status) count++
-        })
-        return count
-    }
+    const roadmapCallback = useCallback(
+        (s: string) => countStatus(s, suggestions),
+        [suggestions.some(suggestion=> suggestion.status)]
+      );
 
   return (
     <div className="nav">
@@ -61,9 +58,9 @@ function NavBar() {
                         <Link to="/roadmap"><p className="p-2 nav__roadmap--view">view</p></Link>
                     </div>
                     <ul>
-                        <li><span>Planned<span>{countStatus("planned")}</span></span></li>
-                        <li><span>In-Progress<span>{countStatus("in-progress")}</span></span></li>
-                        <li><span>Live<span>{countStatus("live")}</span></span></li>
+                        <li><span>Planned<span>{roadmapCallback("planned")}</span></span></li>
+                        <li><span>In-Progress<span>{roadmapCallback("in-progress")}</span></span></li>
+                        <li><span>Live<span>{roadmapCallback("live")}</span></span></li>
                     </ul>
                 </div>
             </div>

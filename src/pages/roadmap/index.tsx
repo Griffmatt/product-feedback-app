@@ -36,7 +36,7 @@ function Roadmap() {
               <h3>Planned</h3>
               <p>Features currently being developed</p>
             </div>
-            {suggestions.filter(suggestion=> suggestion.status === "planned").map(suggestion=>{
+            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "planned").map(suggestion=>{
               return(
                 <Link to={`/${suggestion.id}`}>
                   <RoadmapCard suggestion={suggestion} color="Planned"/>
@@ -50,7 +50,7 @@ function Roadmap() {
               <h3>In-Progress</h3>
               <p>Currently being developed</p>
             </div>
-            {suggestions.filter(suggestion=> suggestion.status === "in-progress").map(suggestion=>{
+            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "in-progress").map(suggestion=>{
               return(
                 <Link to={`/${suggestion.id}`}>
                   <RoadmapCard suggestion={suggestion} color="In-Progress"/>
@@ -64,7 +64,7 @@ function Roadmap() {
               <h3>Live</h3>
               <p>Released features</p>
             </div>
-            {suggestions.filter(suggestion=> suggestion.status === "live").map(suggestion=>{
+            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "live").map(suggestion=>{
               return(
                 <Link to={`/${suggestion.id}`}>
                   <RoadmapCard suggestion={suggestion} color="Live"/>
