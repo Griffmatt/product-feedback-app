@@ -9,15 +9,16 @@
     padding-bottom: 5vh;
 
     @include u.breakpoint(medium){
-        padding-block: 2rem;
+        padding-block: 3rem;
      }
 
     @include u.breakpoint(large){
-       padding-block: 4rem;
+       padding-block: 5rem;
     }
 
     &--row{
         @include u.breakpoint(large){
+            display: flex;
             flex-direction: row;
             gap: 1.875rem;
         }

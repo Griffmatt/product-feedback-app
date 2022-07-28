@@ -1,21 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CATEGORY } from '../data/category'
 
 import { useFeature } from "../context/currentFeature"
 
-import { Link } from "react-router-dom"
-
-import { selectSuggestions } from "../redux/suggestionsSlice"
-import { useSelector } from "react-redux"
-
-import { countStatus } from "./../utilities/countStatus"
+import Login from "../components/Login"
+import NavRoadmap from './NavRoadmap'
 
 function NavBar() {
     const [navOpen, setNavOpen] = useState(false)
 
     const {currentFeature, setCurrentFeature} = useFeature()
-
-    const suggestions = useSelector(selectSuggestions)
 
     const handleNavOpen = () =>{
         setNavOpen(!navOpen)
@@ -28,10 +22,6 @@ function NavBar() {
         )
     }, [])
 
-    const roadmapCallback = useCallback(
-        (s: string) => countStatus(s, suggestions),
-        [suggestions.some(suggestion=> suggestion.status)]
-      );
 
   return (
     <div className="nav">
@@ -52,17 +42,8 @@ function NavBar() {
                         )
                     })}
                 </div>
-                <div className="nav__roadmap">
-                    <div>
-                        <h3>Roadmap</h3>
-                        <Link to="/roadmap"><p className="p-2 nav__roadmap--view">view</p></Link>
-                    </div>
-                    <ul>
-                        <li><span>Planned<span>{roadmapCallback("planned")}</span></span></li>
-                        <li><span>In-Progress<span>{roadmapCallback("in-progress")}</span></span></li>
-                        <li><span>Live<span>{roadmapCallback("live")}</span></span></li>
-                    </ul>
-                </div>
+                <NavRoadmap/>
+                <Login/>
             </div>
             <div className={`nav__back-drop ${navOpen?"nav__back-drop--active":""}`}/>
         </div>

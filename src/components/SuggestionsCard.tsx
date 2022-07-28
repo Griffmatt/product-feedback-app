@@ -40,10 +40,12 @@ function Card({ suggestion }: props) {
   };
 
   useEffect(() => {
-    if (user.upvotes.includes(suggestion.id)) {
-      setActive(true);
+    if (user?.upvotes.includes(suggestion.id)) {
+      setActive(true)
+      return
     }
-  }, []);
+    setActive(false)
+  }, [user]);
 
   return (
     <div className="card card--grid">

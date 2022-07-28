@@ -1,5 +1,4 @@
 import { createSlice} from '@reduxjs/toolkit';
-import { Action } from 'history';
 
 import data from "../data/data.json"
 
@@ -21,7 +20,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-            setUser: (state, action) => {
+            login: (state, action) => {
                 state.user = {...data.currentUser, upvotes: action.payload}
             },
             addUpvote: (state, action) => {
@@ -33,11 +32,14 @@ export const userSlice = createSlice({
                 if(state.user){
                     state.user.upvotes = state.user.upvotes.filter((id: number)=> id !== action.payload)
                 }
+            },
+            logout: (state) => {
+                state.user = null
             }
        }
 });
 
-export const { setUser, addUpvote, removeUpvote } = userSlice.actions;
+export const { login, logout, addUpvote, removeUpvote } = userSlice.actions;
 
 export const selectUser = (state: any) => state.user.user;
 

@@ -1,0 +1,35 @@
+@use "../utilities" as u;
+
+.login{
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+
+    @include u.breakpoint(medium){
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 100%;
+        padding-inline: 1.5rem;
+     }
+     @include u.breakpoint(large){
+        padding-inline: 0;
+    }
+
+    &__user{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--dark-blue-1);
+        img{
+            border-radius: 50%;
+            height: 3rem;
+            width: auto;
+        }
+    }
+}
