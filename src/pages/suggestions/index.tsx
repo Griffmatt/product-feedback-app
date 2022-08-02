@@ -35,7 +35,6 @@ function Suggestions() {
   }, []);
 
   useEffect(() => {
-    console.log(suggestions)
    setFilteredSuggestions(
       sortSuggestions(sortBy, suggestions).filter(
         (suggestion: suggestions) =>

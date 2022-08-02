@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 import { deleteFeedback, updateFeedback, addFeedback } from "../redux/suggestionsSlice"
 
@@ -17,20 +17,32 @@ import { useNavigate } from "react-router-dom"
 import { generateKey } from "../utilities/generateKey"
 
 interface props {
-  suggestion?: suggestions
+  suggestion?: suggestions,
+  id?: string
 }
 
-function EditFeedbackContent({ suggestion }: props) {
+function EditFeedbackContent({ suggestion, id }: props) {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, reset, formState: {errors} } = useForm()
+
+  useEffect(()=>{
+    let defaulValues={
+      title: suggestion?.title,
+      description: suggestion?.description,
+      status: suggestion?.status,
+      category: suggestion?.category
+    }
+
+    reset({...defaulValues})
+  }, [suggestion])
 
   const handleUpdateFeedback = (data: any) => {
     
     dispatch(updateFeedback({id: suggestion?.id, ...data}))
 
-    navigate(-1)
+    navigate(`/${id}`, { replace: true })
   }
 
 
@@ -46,15 +58,15 @@ function EditFeedbackContent({ suggestion }: props) {
   
 
   return (
-    <form className="modal__content" onSubmit={handleSubmit(suggestion? handleUpdateFeedback:handleAddFeedback)}>
+    <form className="modal__content" onSubmit={handleSubmit(id? handleUpdateFeedback:handleAddFeedback)}>
       <label className="p-2">
         <span className="p--bold">Feedback title</span>
         Add a short, descriptive headline
         <input
           type="text"
           className={` ${errors.title? "input-field__error": ""} input-field`}
-          defaultValue={suggestion?suggestion.title: ""}
-          {...register("title", {required: true})}
+          {...register("title")}
+          defaultValue={suggestion?.title}
         />
         {errors.title && <p className="input-field__error--text">Title connot be empty</p>}
       </label>
@@ -73,8 +85,8 @@ function EditFeedbackContent({ suggestion }: props) {
         Include any sepcific comments on what should be improved, added, etc.
         <textarea
           className={` ${errors.description? "input-field__error": ""} input-field input-field__text-area`}
-          defaultValue={suggestion?suggestion.description: ""}
-          {...register("description", {required: true})}
+          defaultValue={suggestion?.description}
+          {...register("description")}
         />
         {errors.description && <p className="input-field__error--text">Description cannot be empty</p>}
       </label>
