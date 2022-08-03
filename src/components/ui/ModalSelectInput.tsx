@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { firstLetterUpperCase } from "../../utilities/firstLetterUpperCase"
 
@@ -12,65 +12,66 @@ interface props {
 
 function ModalSelectInput({ options, defaultValue, name, register }: props) {
 
-  const [selectedOption, setSelectedOption] = useState(firstLetterUpperCase(defaultValue));
+  const [selectedOption, setSelectedOption] = useState<string>(defaultValue);
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleShown = () =>{
     setMenuOpen(!menuOpen)
+    console.log(selectedOption)
+    console.log(defaultValue)
   }
 
   const handleChange = (option: string) =>{
     setSelectedOption(option)
   }
 
+  useEffect(()=>{
+    setSelectedOption(defaultValue)
+  }, [defaultValue])
 
   return (
     <>
-      <div className="input-field__wrapper">
-        <input readOnly className="input-field input-field__select" onClick={()=> handleShown()} value={selectedOption} {...register(`${name}`)}/>
+    {selectedOption &&
+      <><div className="input-field__wrapper">
+          <input readOnly className="input-field input-field__select" onClick={() => handleShown()} value={selectedOption} {...register(`${name}`)} />
           <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg" className={`${menuOpen ? "select__image--active" : ""}`}>
             <path
               d="M1 1l4 4 4-4"
               stroke="#4661E6"
               stroke-width="2"
               fill="none"
-              fill-rule="evenodd"
-            />
+              fill-rule="evenodd" />
           </svg>
-        </div>
-      <div
-        className={`${menuOpen ? "select__menu--active" : ""} select__menu select__menu--modal`}
-      >
-        {options.map((option: string) => {
-          return (
-            <div
-              className="select__option"
-              onClick={() => handleChange(option)}
-              key={option}
-            >
-              <p
-                className={`${
-                  option === selectedOption ? "select__option--active" : ""
-                }`}
-              >
-                {option}
-              </p>
-              {option === selectedOption ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11">
-                  <path
-                    fill="none"
-                    stroke="#AD1FEA"
-                    stroke-width="2"
-                    d="M1 5.233L4.522 9 12 1"
-                  />
-                </svg>
-              ) : (
-                ""
-              )}
-            </div>
-          );
-        })}
-      </div>
+        </div><div
+          className={`${menuOpen ? "select__menu--active" : ""} select__menu select__menu--modal`}
+        >
+            {options.map((option: string) => {
+              return (
+                <div
+                  className="select__option"
+                  onClick={() => handleChange(option)}
+                  key={option}
+                >
+                  <p
+                    className={`${option.toLowerCase() === selectedOption.toLowerCase() ? "select__option--active" : ""}`}
+                  >
+                    {option}
+                  </p>
+                  {option.toLowerCase() === selectedOption.toLowerCase() ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11">
+                      <path
+                        fill="none"
+                        stroke="#AD1FEA"
+                        stroke-width="2"
+                        d="M1 5.233L4.522 9 12 1" />
+                    </svg>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              );
+            })}
+          </div></>}
     </>
   );
 }

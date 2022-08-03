@@ -26,7 +26,7 @@ interface props {
 const FormSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1).max(250),
-  status: z.string().optional(),
+  status: z.string(),
   category: z.string()
 });
 
@@ -41,10 +41,13 @@ function EditFeedbackContent({ suggestion }: props) {
   const { register, handleSubmit, reset, formState: {errors} } = useForm<FormSchemaType>({resolver: zodResolver(FormSchema)})
 
   useEffect(()=>{
+
+    console.log(suggestion)
+
     let defaulValues={
       title: suggestion?.title,
       description: suggestion?.description,
-      status: suggestion?.status,
+      status: suggestion? suggestion.status : "Suggestion",
       category: suggestion?.category
     }
     
@@ -63,7 +66,7 @@ function EditFeedbackContent({ suggestion }: props) {
   }
 
   const handleAddFeedback = (data: any) => {
-    dispatch(addFeedback({id: generateKey("F"), ...data, status: "suggestion", upvotes: 0, comments: [] }))
+    dispatch(addFeedback({id: generateKey("F"), ...data, upvotes: 0, comments: [] }))
     navigate(-1)
   }
   
