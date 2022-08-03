@@ -16,16 +16,29 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { generateKey } from "../utilities/generateKey"
 
+import  { z }  from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+
 interface props {
-  suggestion?: suggestions,
-  id?: string
+  suggestion?: suggestions
 }
 
-function EditFeedbackContent({ suggestion, id }: props) {
+const FormSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1).max(250),
+  status: z.string().optional(),
+  category: z.string()
+});
+
+
+type FormSchemaType = z.infer<typeof FormSchema>;
+
+
+function EditFeedbackContent({ suggestion }: props) {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { register, handleSubmit, reset, formState: {errors} } = useForm()
+  const { register, handleSubmit, reset, formState: {errors} } = useForm<FormSchemaType>({resolver: zodResolver(FormSchema)})
 
   useEffect(()=>{
     let defaulValues={
@@ -34,31 +47,29 @@ function EditFeedbackContent({ suggestion, id }: props) {
       status: suggestion?.status,
       category: suggestion?.category
     }
-
+    
     reset({...defaulValues})
   }, [suggestion])
 
   const handleUpdateFeedback = (data: any) => {
-    
     dispatch(updateFeedback({id: suggestion?.id, ...data}))
-
-    navigate(`/${id}`, { replace: true })
+    navigate(-1)
   }
 
 
   const handleDeleteFeedback = () => {
     dispatch(deleteFeedback(suggestion?.id))
-    navigate("/")
+    navigate(-1)
   }
 
   const handleAddFeedback = (data: any) => {
     dispatch(addFeedback({id: generateKey("F"), ...data, status: "suggestion", upvotes: 0, comments: [] }))
-    navigate("/")
+    navigate(-1)
   }
   
 
   return (
-    <form className="modal__content" onSubmit={handleSubmit(id? handleUpdateFeedback:handleAddFeedback)}>
+    <form className="modal__content" onSubmit={handleSubmit(suggestion? handleUpdateFeedback:handleAddFeedback)}>
       <label className="p-2">
         <span className="p--bold">Feedback title</span>
         Add a short, descriptive headline
