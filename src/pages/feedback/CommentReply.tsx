@@ -3,6 +3,8 @@ import React from 'react'
 import {  comment, reply } from "../../utilities/interfaces"
 import ReplyButton from '../../components/ui/ReplyButton';
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 interface props{
     comment: comment, 
     commentIndex: number,
@@ -12,10 +14,13 @@ interface props{
 
 function CommentReply({comment, commentIndex, handleOpenReply}: props) {
 
+    const [repliesRef] = useAutoAnimate<HTMLDivElement>()
+
   return (
-        <div className="comment__replies" key={comment.id}>
-            {comment.replies.length>0? <div className="comment__divider--vertical"/>:""}
-            {comment.replies?
+    <>
+        {comment.replies.length>0? <div className="comment__divider--vertical"/>:""}
+        <div className="comment__replies" key={comment.id} ref={repliesRef}>
+            {comment.replies &&
             comment.replies.map((reply: reply) => {
                 return (
                 <div className="comment comment--reply" key={reply.id}>
@@ -27,8 +32,9 @@ function CommentReply({comment, commentIndex, handleOpenReply}: props) {
                     <p className="p-1 comment__content"><span className="comment__replying-to">@{reply.replyingTo}</span> {reply.content}</p>
                     <ReplyButton reply={reply} index={commentIndex} handleOpenReply={handleOpenReply}/>
                 </div>
-                );}):""}
+                );})}
         </div>
+    </>
   )
 }
 

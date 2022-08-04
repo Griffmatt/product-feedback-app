@@ -6,8 +6,6 @@ import { addUpvote, removeUpvote, selectUser } from "../redux/userSlice";
 import { upVote, downVote } from "../redux/suggestionsSlice";
 import { suggestions } from "../utilities/interfaces";
 
-import { firstLetterUpperCase } from "../utilities/firstLetterUpperCase";
-
 interface props {
   suggestion: suggestions;
 }
@@ -54,7 +52,7 @@ function Card({ suggestion }: props) {
         <p className="p-2">{suggestion.description}</p>
       </div>
       <div className="card__feature">
-        <p className="p-2">{firstLetterUpperCase(suggestion.category)}</p>
+        <p className="p-2">{suggestion.category}</p>
       </div>
       <div
         className={`card__up-vote ${active ? "card__up-vote--active" : ""}`}

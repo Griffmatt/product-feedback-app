@@ -18,8 +18,7 @@ interface props{
 function AddReply({comment, replyingTo, handleOpenReply}: props) {
 
   const [replyLength, setReplyLength] = useState(0)
-
-  const input = document.getElementById("reply") as HTMLInputElement;
+  const [reply, setReply] = useState("")
 
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
@@ -31,7 +30,7 @@ function AddReply({comment, replyingTo, handleOpenReply}: props) {
         addReply({
           commentId: comment.id,
           id: generateKey("R"),
-          content: input.value,
+          content: reply,
           replyingTo: replyingTo,
           user: {
             image: user.image,
@@ -40,14 +39,19 @@ function AddReply({comment, replyingTo, handleOpenReply}: props) {
           }
         })
       );
-      input.value = ""
+      setReply("")
       handleOpenReply(comment.id, comment)
     }
   };
 
+  const handleReplyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReplyLength(e.target.value.length)
+    setReply(e.target.value)
+  }
+
   return (
     <div className={`comment__add-reply ${comment.replies.length>0? "comment__add-reply--sm": ""}`}>
-        <textarea className="input-field input-field__text-area comment__add-reply--input" id="reply" placeholder='Type your reply here' maxLength={250} onChange={(e) => setReplyLength(e.target.value.length)}/>
+        <textarea className="input-field input-field__text-area comment__add-reply--input" id="reply" placeholder='Type your reply here' maxLength={250} onChange={(e) => handleReplyChange(e)}/>
         <button className="button button--purple comment__add-reply--button" onClick={handlePost}>Post Reply</button>
     </div>
   )

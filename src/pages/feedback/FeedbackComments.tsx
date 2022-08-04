@@ -7,6 +7,8 @@ import AddReply from "./AddReply";
 import { suggestions, comment } from "../../utilities/interfaces";
 import ReplyToCommentButton from "../../components/ui/ReplyToCommentButton";
 
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+
 interface props{
   suggestion: suggestions
 }
@@ -16,6 +18,8 @@ function FeedbackComments({ suggestion }: props) {
 
   const [commentIndex, setCommentIndex] = useState<number | string>()
   const [replyingTo, setReplyingTo] = useState("")
+
+  const [commentsRef] = useAutoAnimate<HTMLDivElement>()
 
   const handleOpenReply = (index: number | string, comment: comment)=> {
     if(commentIndex === index){
@@ -27,7 +31,7 @@ function FeedbackComments({ suggestion }: props) {
   }
 
   return (
-    <div className="feedback__comments">
+    <div className="feedback__comments" ref={commentsRef}>
       <h3>{totalComments(suggestion.comments)} Comments</h3>
       {suggestion.comments?suggestion.comments.map((comment: comment, index: number) => {
         return (

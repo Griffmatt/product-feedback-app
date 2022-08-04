@@ -10,4 +10,4 @@ export const totalComments = (comments: comment[]) => {
     }
 
     return total
-  }
+  } 

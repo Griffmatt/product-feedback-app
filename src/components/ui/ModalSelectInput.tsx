@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { firstLetterUpperCase } from "../../utilities/firstLetterUpperCase"
-
 interface props {
   options: string[],
   defaultValue: string,
@@ -12,13 +10,11 @@ interface props {
 
 function ModalSelectInput({ options, defaultValue, name, register }: props) {
 
-  const [selectedOption, setSelectedOption] = useState<string>(defaultValue);
+  const [selectedOption, setSelectedOption] = useState<string>();
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleShown = () =>{
     setMenuOpen(!menuOpen)
-    console.log(selectedOption)
-    console.log(defaultValue)
   }
 
   const handleChange = (option: string) =>{

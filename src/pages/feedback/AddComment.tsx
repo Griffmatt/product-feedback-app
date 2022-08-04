@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import { selectUser } from "../../redux/userSlice";
 
@@ -15,12 +15,12 @@ interface props {
 
 function AddComment({ suggestion }: props) {
   const [commentLength, setCommentLength] = useState(0);
+  const [comment, setComment] = useState("")
 
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
-  const input = document.getElementById("comment") as HTMLInputElement;
 
   const handlePost = () => {
     if (commentLength > 0) {
@@ -28,7 +28,7 @@ function AddComment({ suggestion }: props) {
         addComment({
           feedbackId: suggestion.id,
           id: generateKey("C"),
-          content: input.value,
+          content: comment,
           user: {
             image: user.image,
             name: user.name,
@@ -37,10 +37,15 @@ function AddComment({ suggestion }: props) {
           replies: [],
         })
       );
-      input.value = ""
       setCommentLength(0)
+      setComment("")
     }
   };
+
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentLength(e.target.value.length)
+    setComment(e.target.value)
+  }
 
   return (
     <div className="add-comment">
@@ -50,7 +55,8 @@ function AddComment({ suggestion }: props) {
         id="comment"
         placeholder="Type your comment here"
         maxLength={250}
-        onChange={(e) => setCommentLength(e.target.value.length)}
+        value={comment}
+        onChange={(e) => handleCommentChange(e)}
       />
       <div className="add-comment__post">
         <p className="p-1">{250 - commentLength} Characthers left</p>
