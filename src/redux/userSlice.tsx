@@ -1,7 +1,5 @@
 import { createSlice} from '@reduxjs/toolkit';
 
-import data from "../data/data.json"
-
 interface State{
     user: {
         image: string,
@@ -21,7 +19,8 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
             login: (state, action) => {
-                state.user = {...data.currentUser, upvotes: action.payload}
+                console.log(action.payload)
+                state.user = {...action.payload, upvotes: []}
             },
             addUpvote: (state, action) => {
                 if(state.user){

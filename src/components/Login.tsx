@@ -1,5 +1,7 @@
 import React from 'react'
 
+import axios from 'axios'
+
 import { useSelector, useDispatch } from "react-redux"
 
 import { selectUser, login, logout} from "./../redux/userSlice"
@@ -11,8 +13,13 @@ const user = useSelector(selectUser)
 
 const handleLogin = () => {
     if(user === null){
-        dispatch(login([]))
-        return
+        async function fetchData(){
+            const response = await axios.get("data.json")
+            console.log(response)
+            dispatch(login(response.data.currentUser))
+            return response.data
+          }
+          fetchData()
     }
     dispatch(logout())
 }

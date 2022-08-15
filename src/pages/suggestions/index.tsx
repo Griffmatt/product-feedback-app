@@ -15,6 +15,8 @@ import { selectSuggestions, fetchState } from "../../redux/suggestionsSlice"
 import { sortSuggestions } from "../../utilities/sortSuggestions"
 import { useSortBy } from "../../context/sortBySuggestions"
 
+import axios from "axios"
+
 
 function Suggestions() {
   const { currentFeature } = useFeature();
@@ -30,7 +32,12 @@ function Suggestions() {
 
   useEffect(() => {
     if (suggestions.length === 0) {
-      dispatch(fetchState());
+      async function fetchData(){
+        const response = await axios.get("data.json")
+        dispatch(fetchState(response.data))
+        return response.data
+      }
+      fetchData()
     }
   }, []);
 

@@ -1,8 +1,6 @@
 import { createSlice} from '@reduxjs/toolkit';
 
-import data from "../data/data.json"
-
-import { suggestions, comment } from "../utilities/interfaces";
+import { suggestions } from "../utilities/interfaces";
 
 interface stateSuggestions{
     suggestions: state
@@ -21,8 +19,9 @@ export const suggestionsSlice = createSlice({
     name: "suggestions",
     initialState,
     reducers: {
-        fetchState: (state) => {
-           state.suggestions = data.productRequests
+        fetchState: (state, action) => {
+            console.log(action.payload.productRequests)
+           state.suggestions = [...action.payload.productRequests]
         },
         addSuggestion: (state, action) =>{
             state.suggestions = [...state.suggestions, action.payload]
