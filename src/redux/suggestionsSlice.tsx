@@ -18,9 +18,8 @@ const initialState: state = {
 
 export const fetchSuggestions = createAsyncThunk(
     "suggestions/fetchSuggestions",
-    async (thunkAPI) => {
+    async (_thunkAPI) => {
         const response = await axios.get("/data.json")
-        console.log(response)
         return response.data.productRequests
     }
 ) as any
@@ -78,12 +77,13 @@ const suggestionsSlice = createSlice({
             state.suggestions[index] = {...state.suggestions[index], ...action.payload}  
         },
         deleteFeedback: (state, action) => {
-            state.suggestions = state.suggestions.filter(suggestion=> suggestion.id.toString() !== action.payload)
+            state.suggestions = state.suggestions.filter(suggestion=> suggestion.id !== action.payload)
         },
     },
     extraReducers:{
         [fetchSuggestions.pending]: (state: state)=>{
             state.loading = "pending"
+            console.log(state.loading)
         },
         [fetchSuggestions.fulfilled]: (state: state, action: any)=>{
             state.loading = "fulfilled"
