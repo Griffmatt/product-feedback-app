@@ -52,9 +52,11 @@ function Roadmap() {
             </div>
             {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "in-progress").map(suggestion=>{
               return(
+                <React.Fragment key={suggestion.id}>
                 <Link to={`/${suggestion.id}`}>
                   <RoadmapCard suggestion={suggestion} color="In-Progress"/>
                 </Link>
+                </React.Fragment>
                 )
             })}
           </div>}

@@ -44,7 +44,7 @@ function RoadmapCard({suggestion, color}: props) {
     }
 
     useEffect(() =>{
-        if(user.upvotes.includes(suggestion.id)){
+        if(user?.upvotes.includes(suggestion.id)){
             setActive(true)
         }
     }, [])

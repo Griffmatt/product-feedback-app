@@ -10,7 +10,7 @@ interface props {
   suggestion: suggestions;
 }
 
-function Card({ suggestion }: props) {
+function SuggestionsCard({ suggestion }: props) {
   const [active, setActive] = useState(false);
 
   const dispatch = useDispatch();
@@ -83,4 +83,4 @@ function Card({ suggestion }: props) {
   );
 }
 
-export default Card;
+export default SuggestionsCard;

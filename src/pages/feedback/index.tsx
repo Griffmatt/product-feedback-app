@@ -39,8 +39,8 @@ function FeedbackDetails({ id }: { id: string | undefined }) {
               </Link>}
             </div>
             <Card suggestion={currentSuggestion} />
-            <FeedbackComments suggestion={currentSuggestion} />
-            <AddComment suggestion={currentSuggestion} />
+            <FeedbackComments suggestion={currentSuggestion}/>
+            {user && <AddComment suggestion={currentSuggestion} />}
           </div>
         </div>}
     </>

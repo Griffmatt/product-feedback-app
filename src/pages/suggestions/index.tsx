@@ -24,15 +24,8 @@ function Suggestions() {
     []
   );
 
-  const dispatch = useDispatch();
-
   const suggestions = useSelector(selectSuggestions);
 
-  useEffect(() => {
-    if (suggestions.length === 0) {
-        dispatch(fetchSuggestions())
-    }
-  }, []);
 
   useEffect(() => {
    setFilteredSuggestions(
