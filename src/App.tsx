@@ -19,8 +19,6 @@ import { persistStore } from 'redux-persist'
 
 function App() {
 
-  let persistor = persistStore(store);
-
   const FeedbackId = () => {
     const {id} = useParams()
       return(

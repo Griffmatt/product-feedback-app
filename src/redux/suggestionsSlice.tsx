@@ -1,4 +1,5 @@
-import { createSlice} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import { suggestions } from "../utilities/interfaces";
 
@@ -6,23 +7,29 @@ interface stateSuggestions{
     suggestions: state
 }
 interface state{
-    suggestions: suggestions[]
+    suggestions: suggestions[],
+    loading: string | null
 }
 
-let initialState: state = {
-    suggestions: []
+const initialState: state = {
+    suggestions: [],
+    loading: null
 }
 
+export const fetchSuggestions = createAsyncThunk(
+    "suggestions/fetchSuggestions",
+    async (thunkAPI) => {
+        const response = await axios.get("data.json")
+        return response.data.productRequests
+    }
+) as any
 
 
-export const suggestionsSlice = createSlice({
+
+const suggestionsSlice = createSlice({
     name: "suggestions",
     initialState,
     reducers: {
-        fetchState: (state, action) => {
-            console.log(action.payload.productRequests)
-           state.suggestions = [...action.payload.productRequests]
-        },
         addSuggestion: (state, action) =>{
             state.suggestions = [...state.suggestions, action.payload]
         },
@@ -72,9 +79,22 @@ export const suggestionsSlice = createSlice({
         deleteFeedback: (state, action) => {
             state.suggestions = state.suggestions.filter(suggestion=> suggestion.id.toString() !== action.payload)
         },
-}});
+    },
+    extraReducers:{
+        [fetchSuggestions.pending]: (state: state)=>{
+            state.loading = "pending"
+        },
+        [fetchSuggestions.fulfilled]: (state: state, action: any)=>{
+            state.loading = "fulfilled"
+            state.suggestions = [...action.payload]
+        },
+        [fetchSuggestions.rejected]: (state: state)=>{
+            state.loading = "rejected"
+        }
+    },
+});
 
-export const { addSuggestion, fetchState, upVote, downVote, addComment, addReply, deleteComment, deleteReply, addFeedback, updateFeedback, deleteFeedback } = suggestionsSlice.actions;
+export const { addSuggestion, upVote, downVote, addComment, addReply, deleteComment, deleteReply, addFeedback, updateFeedback, deleteFeedback } = suggestionsSlice.actions;
 
 export const selectSuggestions = (state: stateSuggestions) => state.suggestions.suggestions;
 

@@ -24,17 +24,18 @@ function Card({ suggestion }: props) {
   const handleUpVote = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
+    if(user){
+      if (user.upvotes.includes(suggestion.id)) {
+        dispatch(removeUpvote(suggestion.id));
+        dispatch(downVote(suggestion.id));
+        setActive(false);
+        return;
+      }
 
-    if (user.upvotes.includes(suggestion.id)) {
-      dispatch(removeUpvote(suggestion.id));
-      dispatch(downVote(suggestion.id));
-      setActive(false);
-      return;
+      dispatch(addUpvote(suggestion.id));
+      dispatch(upVote(suggestion.id));
+      setActive(true);
     }
-
-    dispatch(addUpvote(suggestion.id));
-    dispatch(upVote(suggestion.id));
-    setActive(true);
   };
 
   useEffect(() => {

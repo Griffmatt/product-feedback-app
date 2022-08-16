@@ -42,8 +42,6 @@ function EditFeedbackContent({ suggestion }: props) {
 
   useEffect(()=>{
 
-    console.log(suggestion)
-
     let defaulValues={
       title: suggestion?.title,
       description: suggestion?.description,
