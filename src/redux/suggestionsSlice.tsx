@@ -19,7 +19,8 @@ const initialState: state = {
 export const fetchSuggestions = createAsyncThunk(
     "suggestions/fetchSuggestions",
     async (thunkAPI) => {
-        const response = await axios.get("data.json")
+        const response = await axios.get("/data.json")
+        console.log(response)
         return response.data.productRequests
     }
 ) as any
