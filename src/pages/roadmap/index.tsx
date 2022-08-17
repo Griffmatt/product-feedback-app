@@ -4,9 +4,11 @@ import { Link } from "react-router-dom"
 
 import AddFeedbackButton from '../../components/ui/AddFeedbackButton'
 import BackButton from '../../components/ui/BackButton'
+import RoadmapCard from './RoadmapCard';
+import RoadmapCards from './RoadmapCards';
+
 import { selectSuggestions } from "../../redux/suggestionsSlice";
 import { useSelector } from "react-redux";
-import RoadmapCard from './RoadmapCard';
 
 function Roadmap() {
 
@@ -30,50 +32,9 @@ function Roadmap() {
       </div>
       <div className="roadmap__content">
         <div className="roadmap__grid">
-          {suggestions &&
-          <div className={`roadmap__cards ${activeNav==="Planned"? "roadmap__cards--active": ""}`}>
-            <div className="roadmap__title">
-              <h3>Planned</h3>
-              <p>Features currently being developed</p>
-            </div>
-            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "planned").map(suggestion=>{
-              return(
-                <Link to={`/${suggestion.id}`}>
-                  <RoadmapCard suggestion={suggestion} color="Planned"/>
-                </Link>
-                )
-            })}
-          </div>}
-          {suggestions &&
-          <div className={`roadmap__cards ${activeNav==="In-Progress"? "roadmap__cards--active": ""}`}>
-            <div className="roadmap__title">
-              <h3>In-Progress</h3>
-              <p>Currently being developed</p>
-            </div>
-            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "in-progress").map(suggestion=>{
-              return(
-                <React.Fragment key={suggestion.id}>
-                <Link to={`/${suggestion.id}`}>
-                  <RoadmapCard suggestion={suggestion} color="In-Progress"/>
-                </Link>
-                </React.Fragment>
-                )
-            })}
-          </div>}
-          {suggestions &&
-          <div className={`roadmap__cards ${activeNav==="Live"? "roadmap__cards--active": ""}`}>
-            <div className="roadmap__title">
-              <h3>Live</h3>
-              <p>Released features</p>
-            </div>
-            {suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "live").map(suggestion=>{
-              return(
-                <Link to={`/${suggestion.id}`}>
-                  <RoadmapCard suggestion={suggestion} color="Live"/>
-                </Link>
-              )
-            })}
-          </div>}
+          {suggestions && <RoadmapCards activeNav={activeNav} suggestion={suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "planned")} info={{title: "Planned", description:"Ideas prioritized for research"}}/>}
+          {suggestions && <RoadmapCards activeNav={activeNav} suggestion={suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "in-progress")} info={{title: "In-Progress", description:"Features currently being developed"}}/>}
+          {suggestions && <RoadmapCards activeNav={activeNav} suggestion={suggestions.filter(suggestion=> suggestion.status.toLowerCase() === "live")} info={{title: "Live", description:"Released features"}}/>}
         </div>
       </div>
     </div>

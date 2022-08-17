@@ -206,9 +206,9 @@
     {
       "id": 7,
       "title": "More comprehensive reports",
-      "category": "feature",
+      "category": "Feature",
       "upvotes": 123,
-      "status": "planned",
+      "status": "Planned",
       "description": "It would be great to see a more detailed breakdown of solutions.",
       "comments": [
         {

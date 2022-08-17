@@ -10,8 +10,10 @@ import Roadmap from "./pages/roadmap";
 import Suggestions from "./pages/suggestions";
 
 import { Routes, Route, useParams } from "react-router-dom";
+
 import { FeatureContextProvider } from "./context/currentFeature";
 import { SortByContextProvider } from "./context/sortBySuggestions";
+import { ModalContextProvider } from "./context/modalSelectMenu";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,13 +33,15 @@ function App() {
   return (
     <FeatureContextProvider>
       <SortByContextProvider>
-        <Routes>
-          <Route path="/" element={<Suggestions />} />
-          <Route path="/add-new-feedback" element={<NewFeedback />} />
-          <Route path="/edit-feedback/:id" element={<EditFeedback />} />
-          <Route path="/:id" element={<FeedbackId />} />
-          <Route path="/roadmap" element={<Roadmap />} />
-        </Routes>
+        <ModalContextProvider>
+          <Routes>
+            <Route path="/" element={<Suggestions />} />
+            <Route path="/add-new-feedback" element={<NewFeedback />} />
+            <Route path="/edit-feedback/:id" element={<EditFeedback />} />
+            <Route path="/:id" element={<FeedbackId />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+          </Routes>
+        </ModalContextProvider>
       </SortByContextProvider>
     </FeatureContextProvider>
   );

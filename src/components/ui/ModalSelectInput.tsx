@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { useModal } from "../../context/modalSelectMenu"
+
 interface props {
   options: string[],
   defaultValue: string,
@@ -10,11 +12,12 @@ interface props {
 
 function ModalSelectInput({ options, defaultValue, name, register }: props) {
 
-  const [selectedOption, setSelectedOption] = useState<string>();
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const { menuOpen, setMenuOpen } = useModal()
 
   const handleShown = () =>{
-    setMenuOpen(!menuOpen)
+    setMenuOpen(menuOpen === name? "" : name)
   }
 
   const handleChange = (option: string) =>{
@@ -39,7 +42,7 @@ function ModalSelectInput({ options, defaultValue, name, register }: props) {
               fill-rule="evenodd" />
           </svg>
         </div><div
-          className={`${menuOpen ? "select__menu--active" : ""} select__menu select__menu--modal`}
+          className={`${menuOpen === name ? "select__menu--active" : ""} select__menu select__menu--modal`}
         >
             {options.map((option: string) => {
               return (

@@ -11,15 +11,11 @@ interface props {
 }
 
 function SuggestionsCard({ suggestion }: props) {
+  
   const [active, setActive] = useState(false);
 
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
-  const commentsMemo = useMemo(
-    () => totalComments(suggestion.comments),
-    [suggestion.comments]
-  );
 
   const handleUpVote = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -77,7 +73,7 @@ function SuggestionsCard({ suggestion }: props) {
             fill-rule="nonzero"
           />
         </svg>
-        <p>{commentsMemo}</p>
+        <p>{totalComments(suggestion.comments)}</p>
       </div>
     </div>
   );
