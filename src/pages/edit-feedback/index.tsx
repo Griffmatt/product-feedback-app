@@ -17,7 +17,8 @@ function EditFeedback() {
 
   useEffect(()=>{
     setCurrentSuggestion(suggestion.filter((suggestion) => id === suggestion.id.toString())[0])
-  })
+
+  }, [suggestion, id])
 
   return (
     <div className="container container--sm container--padding-top">

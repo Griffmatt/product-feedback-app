@@ -60,7 +60,7 @@ function EditFeedbackContent({ suggestion }: props) {
 
   const handleDeleteFeedback = () => {
     dispatch(deleteFeedback(suggestion?.id))
-    navigate(-1)
+    navigate(-2)
   }
 
   const handleAddFeedback = (data: any) => {
@@ -105,7 +105,7 @@ function EditFeedbackContent({ suggestion }: props) {
       <div className="modal__buttons">
           <button className="button button--purple button--lg modal__buttons--save" type="submit">Save Changes</button>
           <CancelButton/>
-          {suggestion &&<button className="button button--red button--lg modal__buttons--delete"onClick={handleDeleteFeedback}>Delete</button>}
+          {suggestion &&<button className="button button--red button--lg modal__buttons--delete"  type="button" onClick={handleDeleteFeedback}>Delete</button>}
       </div>
     </form>
   );

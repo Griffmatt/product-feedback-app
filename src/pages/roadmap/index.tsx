@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 
-import { Link } from "react-router-dom"
-
 import AddFeedbackButton from '../../components/ui/AddFeedbackButton'
 import BackButton from '../../components/ui/BackButton'
-import RoadmapCard from './RoadmapCard';
 import RoadmapCards from './RoadmapCards';
 
 import { selectSuggestions } from "../../redux/suggestionsSlice";
