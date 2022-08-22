@@ -41,9 +41,9 @@
     <br />
     <a href="https://ubiquitous-chimera-76ab58.netlify.app/">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Griffmatt/product-feedback-app/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/Griffmatt/product-feedback-app/issues">Request Feature</a>
   </p>
 </div>
 
