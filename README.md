@@ -24,7 +24,7 @@
 <br />
 <div align="center">
 
-  <h3 align="center">Produyct Feedback App</h3>
+  <h3 align="center">Product Feedback App</h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
@@ -200,7 +200,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - griffinmmatthews@gmail.com
+Griffin Matthews - [Linkedin](https://www.linkedin.com/in/griffin-matthews/) - griffinmmatthews@gmail.com
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
