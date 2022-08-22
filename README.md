@@ -27,7 +27,7 @@
   <h3 align="center">Product Feedback App</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An app for keeping track of user feedback, and tracking progression on popular feedbacks
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
